@@ -1,7 +1,5 @@
-package aceite.esqueletoandante
+package aceite
 
-import aceite.suporte.PendingRule
-import aceite.suporte.Pendente
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test

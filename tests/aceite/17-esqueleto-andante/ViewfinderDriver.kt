@@ -1,4 +1,4 @@
-package aceite.esqueletoandante
+package aceite
 
 import java.util.ServiceLoader
 
@@ -6,7 +6,7 @@ import java.util.ServiceLoader
  * What the acceptance tests of the walking skeleton need from the viewfinder (four-layer acceptance tests: the
  * scenarios talk to this driver, never to production classes, so they compile before the implementation exists).
  * The implementing task provides a [ViewfinderFactory] through
- * `app/src/test/resources/META-INF/services/aceite.esqueletoandante.ViewfinderFactory`.
+ * `app/src/test/resources/META-INF/services/aceite.ViewfinderFactory`.
  */
 interface Viewfinder {
     val zoom: Float
@@ -37,5 +37,8 @@ fun openViewfinder(
     viewWidth: Int,
     viewHeight: Int,
 ): Viewfinder =
-    ServiceLoader.load(ViewfinderFactory::class.java).firstOrNull()?.open(imageWidth, imageHeight, viewWidth, viewHeight)
+    ServiceLoader
+        .load(ViewfinderFactory::class.java)
+        .firstOrNull()
+        ?.open(imageWidth, imageHeight, viewWidth, viewHeight)
         ?: throw AssertionError("nenhum ViewfinderFactory registrado: o visor ainda não foi implementado")
