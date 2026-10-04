@@ -15,7 +15,6 @@ class EnquadramentoTest {
     private fun visor() = openViewfinder(imageWidth = 1000, imageHeight = 800, viewWidth = 500, viewHeight = 400)
 
     @Test
-    @Pendente // pendente da tarefa #20
     fun `RN-0001 CA-1 pedir 2x a partir de 1x deixa o zoom em 2x`() {
         val visor = visor()
         visor.requestZoom(2f)
@@ -23,7 +22,6 @@ class EnquadramentoTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #20
     fun `RN-0001 CA-2 a 4x pedir mais zoom deixa o zoom em 4x`() {
         val visor = visor()
         visor.requestZoom(4f)
@@ -32,7 +30,6 @@ class EnquadramentoTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #20
     fun `RN-0001 CA-3 a 1x pedir menos zoom deixa o zoom em 1x`() {
         val visor = visor()
         visor.requestZoom(0.5f)
@@ -40,7 +37,6 @@ class EnquadramentoTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #20
     fun `RN-0002 CA-4 a 2x arrastar alem da borda para na borda`() {
         val visor = visor()
         visor.requestZoom(2f)
@@ -50,7 +46,6 @@ class EnquadramentoTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #20
     fun `RN-0002 CA-5 a 1x arrastar nao move a imagem`() {
         val visor = visor()
         visor.drag(100f, 100f)
