@@ -16,10 +16,10 @@ Decisão registrada em [ADR-0001](docs/decisoes/ADR-0001-stack.md).
 | Item | Escolha | Versão |
 | --- | --- | --- |
 | Linguagem | Kotlin | 2.4.20 |
-| Framework | Android SDK (minSdk 26 / Android 8.0; compileSdk e targetSdk 36) | — |
+| Framework | Android SDK (minSdk 26 / Android 8.0; targetSdk 36; compileSdk 37, exigido pelo Compose 1.12) | — |
 | Front-end | Jetpack Compose (Material 3) | BOM 2026.09.00 |
-| Build e pacotes | Gradle Wrapper + Android Gradle Plugin, catálogo `gradle/libs.versions.toml` | AGP 9.4.1 |
-| JDK de build | Temurin | 21 |
+| Build e pacotes | Gradle Wrapper (9.8.0, hash fixo) + Android Gradle Plugin, catálogo `gradle/libs.versions.toml` | AGP 9.4.1 |
+| JDK de build | Temurin (local) ou o JDK do runner da CI | 17 ou mais novo |
 
 ## Banco de dados
 
@@ -120,3 +120,4 @@ Dependências de desenvolvimento são livres. Linha nova só com ADR e pelo port
 | Data | O que mudou | ADR |
 | --- | --- | --- |
 | 2026-10-04 | Versão inicial (Fundação F2) | ADR-0001 |
+| 2026-10-04 | compileSdk 37 (exigido pelas bibliotecas do Compose 1.12); JDK 17+; Gradle 9.8.0 (F5) | ADR-0001 |
