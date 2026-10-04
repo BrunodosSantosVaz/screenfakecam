@@ -12,7 +12,9 @@ Quem conduz: a skill `bb-iniciar-projeto`, que chama a skill de cada etapa.
 - Não há épico, candidata nem homologação na Fundação.
 - A IA mescla o PR quando o dono diz "aprovado" na conversa, registrando a frase dele no PR. O PR guarda o histórico
   da decisão.
-- No fim de F5, *Publicar sem release* avança a `main` até a `develop`.
+- Logo depois do PR da F5 que instala a esteira, *Publicar sem release* (rodado localmente pela IA, porque o botão
+  ainda não existe na `main`) avança a `main` até a `develop`. Sem isso nada da esteira funciona: o GitHub só dispara
+  os workflows de issue e os botões a partir da branch padrão. O épico Esqueleto andante vem depois.
 
 ## As etapas
 
@@ -97,7 +99,9 @@ concluídas.
 `bb gerar` monta `.github/`, `.agents/skills/`, `.claude/` e os blocos marcados a partir do framework e do
 `bigbang.toml` (removendo os workflows `bb-framework-*`). O PR da F5 instala só a esteira e documentos: nenhum código do
 artefato entra na `develop` por ele (invariante da seção 11.5). Enquanto nenhum caminho do artefato existe, a CI pula
-os comandos da stack com aviso. Todos os botões rodam primeiro com `simular=true`. Em
+os comandos da stack com aviso. O PR da F5 também cria `docs/operacao/checklist-producao.md` a partir do modelo,
+dizendo como o projeto verifica cada item (`cmd:`, `portao:` ou `nao-se-aplica:` com motivo). Todos os botões rodam
+primeiro com `simular=true`. Em
 seguida, um épico de verdade, "Esqueleto andante", segue o fluxo normal: estrutura de camadas da stack, health check,
 teste de arquitetura, a primeira regra de negócio com seu teste de aceite, e publicação em produção — incluindo um
 *Voltar versão* de teste no perfil deploy. **A Fundação só termina quando esse ciclo fecha.**
