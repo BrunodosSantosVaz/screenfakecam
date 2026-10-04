@@ -41,7 +41,7 @@ build = "./gradlew assembleRelease"
 [testes]
 cobertura_minima = 80                  # % nas camadas de domínio e aplicação
 marca_pendente = "@Pendente"           # anotação JUnit do projeto: falha esperada estrita (passou = reprova)
-padrao_teste = "@Test"                 # regex que identifica a declaração de um teste na stack
+padrao_teste = "fun `"                 # testes de aceite: nome entre crases com o ID da RN (fun `RN-0001 …`)
 
 [seguranca]
 nivel_asvs = "L1"                      # L1 | L2 (L2 obrigatório com dado pessoal ou dinheiro)
