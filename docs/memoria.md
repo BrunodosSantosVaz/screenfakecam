@@ -15,7 +15,13 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 - Robolectric roda na imagem do **Android 35** (`app/src/test/resources/robolectric.properties`): na 36 ele falha com
   "Failed to interact with raw FileDescriptor internals" no JDK 21. Os testes também precisam de
   `--add-opens=java.base/java.io=ALL-UNNAMED` (já no `app/build.gradle.kts`).
-- Testes de aceite ficam em `tests/aceite/` (pacote `aceite`) e entram como fonte de teste do módulo `app`.
+- Testes de aceite ficam em `tests/aceite/`, **todos no pacote `aceite`** (o `@Pendente` então não precisa de import:
+  liberar a marca não deixa import sem uso, que a trava não deixaria remover). Entram no módulo `app` por
+  `sourceSets.test.kotlin.directories` (no AGP 9, `java.srcDir` não compila Kotlin, e o teste "passava" sem rodar).
+- Nome do teste de aceite entre crases com o ID da regra: ``fun `RN-0001 CA-1 …`()`` (`testes.padrao_teste`).
+- Cenários falam com um *driver* (interface em `tests/aceite/`, implementação registrada por `ServiceLoader` em
+  `app/src/test/resources/META-INF/services/`): compilam antes de a funcionalidade existir.
+- `@Pendente // pendente da tarefa #N` + `PendingRule`: pendente que falha = pulado; pendente que passa = reprova.
 - Funções `@Composable` começam com maiúscula: o ktlint está configurado para isso no `.editorconfig`.
 - Cobertura mínima de 80% vale só para `domain` e `application` (Kover).
 

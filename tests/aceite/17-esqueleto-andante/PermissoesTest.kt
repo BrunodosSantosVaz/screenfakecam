@@ -16,7 +16,6 @@ class PermissoesTest {
     val pendentes = PendingRule()
 
     @Test
-    @Pendente // pendente da tarefa #19
     fun `RN-0003 CA-6 o manifesto nao pede internet armazenamento amplo nem camera`() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val info = context.packageManager.getPackageInfo(context.packageName, PackageManager.GET_PERMISSIONS)
