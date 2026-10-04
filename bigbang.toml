@@ -53,9 +53,9 @@ zonas_sensiveis = ["app/src/main/AndroidManifest.xml", "app/proguard-rules.pro",
 
 [paineis]                              # preenchido em F4
 owner = "BrunodosSantosVaz"
-planejamento = 0
-execucao = 0
-bugs = 0
+planejamento = 22
+execucao = 23
+bugs = 24
 
 [ias]
 nomes = ["claude-1", "claude-2", "codex-1"]
