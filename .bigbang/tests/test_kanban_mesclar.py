@@ -48,6 +48,13 @@ class Kanban(ComBb):
         self.assertIn("com-prototipo", labels)
         self.assertIn("revisao-humana", labels)  # the AI's switch to human review survives the edit
 
+    def test_edicao_sem_mudanca_no_formulario_nao_falha(self):  # pilot: "field to edit flag required"
+        self.issue(7, "Estoque", labels=["epic", "sem-prototipo", "testes-revisao-ia", "revisao-ia"],
+                   corpo=corpo_epico())
+        r = self.kanban(EVENT="issues", ACTION="edited", ISSUE=7, BODY_FROM=corpo_epico())
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertFalse([c for c in self.chamadas() if c[:2] == ["issue", "edit"]])
+
     def test_decisoes_do_dono_movem_o_epico(self):
         self.issue(7, "Estoque", labels=["epic", "com-prototipo"])
         self.cartao(1, 7, "Backlog Refinement")
@@ -152,6 +159,21 @@ class Mesclar(ComBb):
                 self.assertEqual(r.returncode, 0)
                 self.assertIn("não será mesclado", r.stdout)
                 self.assertFalse(self.mesclado())
+
+    def test_so_a_execucao_mais_recente_do_check_conta(self):  # pilot PR #25: regras failed, then passed
+        self.epico()
+        antiga = dict(self.VERDE[1], id=1, conclusion="failure")
+        cancelada = dict(self.VERDE[1], id=2, conclusion="cancelled")
+        self.pr(checks=[dict(self.VERDE[0], id=3), antiga, cancelada, dict(self.VERDE[1], id=4),
+                        dict(self.VERDE[2], id=8)])
+        r = self.mesclar()
+        self.assertTrue(self.mesclado(), r.stdout + r.stderr)
+        self.epico()
+        self.pr(numero=31, sha="def", checks=[dict(self.VERDE[0], id=5), dict(self.VERDE[1], id=6),
+                                              dict(self.VERDE[1], id=7, conclusion="failure"),
+                                              dict(self.VERDE[2], id=9)])
+        r = self.mesclar(numero=31)
+        self.assertIn("o check regras falhou", r.stdout)  # the newest run failed: still waits
 
     def test_nunca_na_main(self):
         self.pr(head="release/1.0.0", base="main")
