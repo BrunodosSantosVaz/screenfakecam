@@ -8,3 +8,18 @@ dist/
 build/
 *.tar.gz
 .DS_Store
+
+# Gradle and Android build output
+.gradle/
+/app/build/
+local.properties
+.kotlin/
+# IDEs
+.idea/
+*.iml
+# Signing material never goes to the repository (SEG-IA-04)
+*.jks
+*.keystore
+keystore.properties
+# Pipeline output
+candidata/
