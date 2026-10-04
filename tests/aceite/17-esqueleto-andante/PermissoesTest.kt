@@ -1,7 +1,5 @@
-package aceite.esqueletoandante
+package aceite
 
-import aceite.suporte.PendingRule
-import aceite.suporte.Pendente
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.test.core.app.ApplicationProvider
