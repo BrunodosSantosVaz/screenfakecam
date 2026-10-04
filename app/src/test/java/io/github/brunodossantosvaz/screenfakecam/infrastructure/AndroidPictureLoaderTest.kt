@@ -45,8 +45,9 @@ class AndroidPictureLoaderTest {
     fun downsamplesALargeImage() {
         val file = image("grande.png", 1600, 1200, Bitmap.CompressFormat.PNG)
         val picture = runBlocking { loader.load(Uri.fromFile(file).toString(), maxSide = 500) }
-        assertEquals(400, picture!!.width) // sample 4: never smaller than maxSide/2 on the long side
-        assertEquals(300, picture.height)
+        // the largest power-of-two reduction that keeps the long side >= maxSide: 1600 / 2 = 800
+        assertEquals(800, picture!!.width)
+        assertEquals(600, picture.height)
     }
 
     @Test

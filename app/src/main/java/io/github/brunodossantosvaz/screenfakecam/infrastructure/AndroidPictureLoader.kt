@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
+import android.util.Log
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.exifinterface.media.ExifInterface
@@ -12,6 +13,8 @@ import io.github.brunodossantosvaz.screenfakecam.application.Picture
 import io.github.brunodossantosvaz.screenfakecam.application.PictureLoader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+
+private const val TAG = "ScreenFakeCam"
 
 /** Reads the chosen image through the ContentResolver (no storage permission), downsampled and upright. */
 class AndroidPictureLoader(
@@ -22,15 +25,19 @@ class AndroidPictureLoader(
         maxSide: Int,
     ): Picture<ImageBitmap>? =
         withContext(Dispatchers.IO) {
-            runCatching { decode(Uri.parse(source), maxSide) }.getOrNull()
+            runCatching { decode(Uri.parse(source), maxSide) }
+                .onFailure { Log.w(TAG, "could not decode the chosen image: ${it.javaClass.simpleName}") }
+                .getOrNull()
         }
 
     private fun decode(
         uri: Uri,
         maxSide: Int,
     ): Picture<ImageBitmap>? {
+        // With inJustDecodeBounds, decodeStream always returns null and only fills outWidth/outHeight.
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        resolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, bounds) } ?: return null
+        val stream = resolver.openInputStream(uri) ?: return null
+        stream.use { BitmapFactory.decodeStream(it, null, bounds) }
         if (bounds.outWidth <= 0 || bounds.outHeight <= 0) return null
         var sample = 1
         while (maxOf(bounds.outWidth, bounds.outHeight) / (sample * 2) >= maxSide) sample *= 2

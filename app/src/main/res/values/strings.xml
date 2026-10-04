@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">ScreenFakeCam</string>
     <string name="home_title">ScreenFakeCam</string>
-    <string name="home_subtitle">Escolha uma imagem do celular para usar como visor, ou leia o QR code de uma imagem.</string>
+    <string name="home_subtitle">Escolha uma imagem do celular para usar como visor.</string>
     <string name="choose_image">Escolher imagem</string>
     <string name="back">Voltar</string>
     <string name="viewfinder_title">Visor</string>
