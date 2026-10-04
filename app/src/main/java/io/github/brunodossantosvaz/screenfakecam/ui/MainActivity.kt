@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -72,7 +73,12 @@ fun HomeScreen(
     failed: Boolean = false,
 ) {
     Column(
-        modifier = Modifier.fillMaxSize().background(Tokens.background).padding(Tokens.space5),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Tokens.background)
+                .safeDrawingPadding()
+                .padding(Tokens.space5),
         verticalArrangement = Arrangement.spacedBy(Tokens.space4, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

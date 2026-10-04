@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -48,7 +49,8 @@ fun ViewfinderScreen(
     onDrag: (Float, Float) -> Unit,
     onBack: () -> Unit,
 ) {
-    Column(Modifier.fillMaxSize().background(Tokens.background)) {
+    // Edge-to-edge (targetSdk 35+): keep the bars and controls clear of the status and navigation bars.
+    Column(Modifier.fillMaxSize().background(Tokens.background).safeDrawingPadding()) {
         Row(
             Modifier.fillMaxWidth().background(Tokens.surface).padding(horizontal = Tokens.space2),
             verticalAlignment = Alignment.CenterVertically,
