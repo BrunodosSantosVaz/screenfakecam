@@ -81,7 +81,9 @@ Um item por vez, conferido pela IA com `gh` antes do próximo:
 4. Ambiente `producao` com aprovação obrigatória do dono, aceitando só a `main`; no perfil deploy, também `staging`.
 5. Rulesets em `main`, `develop` e `epico/*`: exigem PR e os checks `check`, `regras` e `seguranca`; bloqueiam force
    push e exclusão.
-6. No perfil deploy: credenciais do alvo, preferindo federação OIDC (nada de chave fixa).
+6. No perfil deploy: credenciais do alvo, preferindo federação OIDC (nada de chave fixa). No perfil compilado:
+   os segredos de assinatura `BB_ASSINATURA_ARQUIVO` (keystore ou certificado em base64), `BB_ASSINATURA_SENHA`,
+   `BB_ASSINATURA_ALIAS` e, se diferente, `BB_ASSINATURA_SENHA_CHAVE`, gerados e guardados pelo dono.
 7. Variáveis do repositório (`PROJETO_OWNER`, números dos painéis) e opções de merge (permitir *merge commit*;
    "apagar branch após merge" desligado, porque quem apaga é a esteira).
 
@@ -93,7 +95,9 @@ concluídas.
 ### F5 · Esteira e esqueleto andante
 
 `bb gerar` monta `.github/`, `.agents/skills/`, `.claude/` e os blocos marcados a partir do framework e do
-`bigbang.toml` (removendo os workflows `bb-framework-*`). Todos os botões rodam primeiro com `simular=true`. Em
+`bigbang.toml` (removendo os workflows `bb-framework-*`). O PR da F5 instala só a esteira e documentos: nenhum código do
+artefato entra na `develop` por ele (invariante da seção 11.5). Enquanto nenhum caminho do artefato existe, a CI pula
+os comandos da stack com aviso. Todos os botões rodam primeiro com `simular=true`. Em
 seguida, um épico de verdade, "Esqueleto andante", segue o fluxo normal: estrutura de camadas da stack, health check,
 teste de arquitetura, a primeira regra de negócio com seu teste de aceite, e publicação em produção — incluindo um
 *Voltar versão* de teste no perfil deploy. **A Fundação só termina quando esse ciclo fecha.**
