@@ -24,6 +24,9 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 - `@Pendente // pendente da tarefa #N` + `PendingRule`: pendente que falha = pulado; pendente que passa = reprova.
 - Funções `@Composable` começam com maiúscula: o ktlint está configurado para isso no `.editorconfig`.
 - Cobertura mínima de 80% vale só para `domain` e `application` (Kover).
+- Robolectric com `graphicsMode=NATIVE` (`robolectric.properties`): no modo simulado, `ImageBitmap` dá NullPointerException.
+- Arquitetura: só `ScreenFakeCamApp` (raiz de composição) conhece `infrastructure`; a `ui` fala com as portas de
+  `application` (ex.: `PictureLoader`). O Konsist reprova `ui` importando `infrastructure`.
 
 ## Segurança
 

@@ -3,5 +3,12 @@
     <string name="app_name">ScreenFakeCam</string>
     <string name="home_title">ScreenFakeCam</string>
     <string name="home_subtitle">Escolha uma imagem do celular para usar como visor, ou leia o QR code de uma imagem.</string>
+    <string name="choose_image">Escolher imagem</string>
+    <string name="back">Voltar</string>
+    <string name="viewfinder_title">Visor</string>
+    <string name="viewfinder_description">Visor. Arraste para enquadrar e use dois dedos ou os botões para o zoom.</string>
+    <string name="zoom_step">%1$d×</string>
+    <string name="loading_image">Abrindo a imagem…</string>
+    <string name="image_error">Não foi possível abrir essa imagem. Escolha outra.</string>
     <string name="home_privacy">Nada sai do seu celular. O app não usa internet.</string>
 </resources>
