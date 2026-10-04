@@ -1,0 +1,26 @@
+/* ScreenFakeCam — tokens do design kit (F3). Fonte única de cor, fonte, espaço, raio e sombra.
+   No app, os mesmos valores vivem em ui/theme (Compose); o lint reprova literais fora dos tokens (FE-01). */
+:root {
+  --cor-fundo: #000000;          /* visor e fundo de todas as telas */
+  --cor-superficie: #1C1C1E;     /* barras, folhas e cartões */
+  --cor-superficie-2: #2C2C2E;   /* botões secundários */
+  --cor-texto: #FFFFFF;
+  --cor-texto-secundario: #B3B3B3;
+  --cor-primaria: #FFC107;       /* destaque: obturador, seleção, ícone */
+  --cor-sobre-primaria: #000000;
+  --cor-erro: #FF6B6B;
+  --cor-sucesso: #4ADE80;
+  --cor-alerta: #FFC107;
+  --cor-foco: #FFC107;
+
+  --fonte-familia: Roboto, "Noto Sans", system-ui, sans-serif;
+  --fonte-titulo: 600 22px/28px var(--fonte-familia);
+  --fonte-corpo: 400 16px/24px var(--fonte-familia);
+  --fonte-legenda: 500 13px/18px var(--fonte-familia);
+
+  --espaco-1: 4px; --espaco-2: 8px; --espaco-3: 12px; --espaco-4: 16px; --espaco-5: 24px; --espaco-6: 32px;
+  --raio-padrao: 12px; --raio-pilula: 999px;
+  --sombra-padrao: 0 4px 16px rgba(0, 0, 0, 0.6);
+  --toque-minimo: 48px;          /* Android: 48 dp (acima dos 44 px do padrão) */
+  --obturador: 76px;
+}
