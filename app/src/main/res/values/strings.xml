@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">ScreenFakeCam</string>
-    <string name="home_title">ScreenFakeCam</string>
-    <string name="home_subtitle">Escolha uma imagem do celular para usar como visor, ou leia o QR code de uma imagem.</string>
-    <string name="home_privacy">Nada sai do seu celular. O app não usa internet.</string>
-</resources>
