@@ -16,7 +16,6 @@ class ObturadorTest {
     private fun camera() = openCamera(imageWidth = 1000, imageHeight = 800, viewWidth = 500, viewHeight = 400)
 
     @Test
-    @Pendente // pendente da tarefa #39
     fun `RN-0004 CA-1 a 1x a foto e a imagem inteira`() {
         val camera = camera()
         camera.pressShutter()
@@ -24,7 +23,6 @@ class ObturadorTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #39
     fun `RN-0004 CA-2 a 2x centralizado a foto e o centro da imagem`() {
         val camera = camera()
         camera.requestZoom(2f)
@@ -33,7 +31,6 @@ class ObturadorTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #39
     fun `RN-0004 CA-3 a 2x na borda esquerda a foto comeca na borda esquerda`() {
         val camera = camera()
         camera.requestZoom(2f)
@@ -43,7 +40,6 @@ class ObturadorTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #39
     fun `RN-0005 CA-4 sem apertar o obturador nenhuma foto e gerada`() {
         val camera = camera()
         camera.requestZoom(4f)
@@ -54,7 +50,6 @@ class ObturadorTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #39
     fun `RN-0005 CA-5 a foto e um arquivo novo e a imagem escolhida nao muda`() {
         val camera = camera()
         camera.pressShutter()
