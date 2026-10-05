@@ -13,7 +13,6 @@ class LeitorDeCodigosTest {
     val pendentes = PendingRule()
 
     @Test
-    @Pendente // pendente da tarefa #44
     fun `RN-0006 CA-1 le o QR code de uma imagem`() {
         val leitor = codeReader()
         val imagem = leitor.sampleImage("https://exemplo.com/cardapio", "QR_CODE", 300, 300)
@@ -24,7 +23,6 @@ class LeitorDeCodigosTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #44
     fun `RN-0006 CA-2 le o codigo de barras EAN-13 de uma imagem`() {
         val leitor = codeReader()
         val imagem = leitor.sampleImage("7891234567895", "EAN_13", 400, 150)
@@ -32,21 +30,18 @@ class LeitorDeCodigosTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #44
     fun `RN-0006 CA-3 imagem sem codigo nao tem leitura`() {
         val branca = IntArray(200 * 200) { 0xFFFFFFFF.toInt() }
         assertNull(codeReader().read(branca, 200, 200))
     }
 
     @Test
-    @Pendente // pendente da tarefa #44
     fun `RN-0007 CA-4 link http ou https pode ser aberto`() {
         assertTrue(codeReader().canOpenAsLink("https://exemplo.com"))
         assertTrue(codeReader().canOpenAsLink("http://exemplo.com/a?b=1"))
     }
 
     @Test
-    @Pendente // pendente da tarefa #44
     fun `RN-0007 CA-5 outros esquemas nunca sao abertos`() {
         for (texto in listOf(
             "javascript:alert(1)",
