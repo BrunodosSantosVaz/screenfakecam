@@ -1,16 +1,20 @@
 package io.github.brunodossantosvaz.screenfakecam.ui
 
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.github.brunodossantosvaz.screenfakecam.application.DecodedCode
 import io.github.brunodossantosvaz.screenfakecam.ui.theme.ScreenFakeCamTheme
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 
 @RunWith(AndroidJUnit4::class)
 class CodeResultScreenTest {
@@ -50,6 +54,25 @@ class CodeResultScreenTest {
             ),
             actions,
         )
+    }
+
+    private fun layout(label: String): TextLayoutResult {
+        val node = compose.onNodeWithText(label, useUnmergedTree = true).fetchSemanticsNode()
+        val layouts = mutableListOf<TextLayoutResult>()
+        node.config[SemanticsActions.GetTextLayoutResult].action?.invoke(layouts)
+        return layouts.single()
+    }
+
+    // Bug #61: on a narrow phone, "Compartilhar" wrapped as "Compartil / har" and the button grew taller.
+    @Test
+    @Config(qualifiers = "w360dp-h780dp")
+    fun theActionLabelsFitInOneLineOnA360dpScreen() {
+        show(CodeOutcome.Found(DecodedCode("https://exemplo.com/cardapio", "QR_CODE")))
+        for (label in listOf("Copiar", "Abrir link", "Compartilhar")) {
+            val text = layout(label)
+            assertEquals(label, 1, text.lineCount)
+            assertFalse("$label cortado", text.multiParagraph.didExceedMaxLines)
+        }
     }
 
     @Test
