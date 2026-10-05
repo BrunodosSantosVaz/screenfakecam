@@ -43,7 +43,7 @@ class ObturadorTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #40
+    @Pendente // pendente da tarefa #39
     fun `RN-0005 CA-4 sem apertar o obturador nenhuma foto e gerada`() {
         val camera = camera()
         camera.requestZoom(4f)
@@ -54,7 +54,7 @@ class ObturadorTest {
     }
 
     @Test
-    @Pendente // pendente da tarefa #40
+    @Pendente // pendente da tarefa #39
     fun `RN-0005 CA-5 a foto e um arquivo novo e a imagem escolhida nao muda`() {
         val camera = camera()
         camera.pressShutter()
