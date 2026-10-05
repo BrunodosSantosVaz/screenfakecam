@@ -35,4 +35,12 @@ class HomeScreenTest {
         compose.setContent { ScreenFakeCamTheme { HomeScreen(failed = true) } }
         compose.onNodeWithText("Não foi possível abrir essa imagem. Escolha outra.").assertIsDisplayed()
     }
+
+    @Test
+    fun readCodeStartsTheReader() {
+        var asked = false
+        compose.setContent { ScreenFakeCamTheme { HomeScreen(onReadCode = { asked = true }) } }
+        compose.onNodeWithText("Ler QR ou código de barras").performClick()
+        assertTrue(asked)
+    }
 }
