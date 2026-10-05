@@ -5,6 +5,16 @@ Todas as mudanças relevantes deste sistema, no formato
 
 ## [Não publicado]
 
+### Adicionado
+
+- Leitor de QR code e código de barras (13 formatos), pela tela inicial ou pelo enquadramento do visor, com Copiar,
+  Compartilhar e Abrir link.
+
+### Segurança
+
+- Só endereços http/https podem ser abertos, e só por toque; outros esquemas (javascript:, intent://, file://…)
+  nunca são abertos.
+
 ## [0.2.0] - 2026-10-05
 
 ### Adicionado
