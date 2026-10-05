@@ -22,4 +22,13 @@
    **Última** mostra a última foto de novo.
 5. **Voltar** (ou o gesto de voltar do Android) retorna à tela inicial e descarta a imagem.
 
-O app não usa internet e não guarda cópia das imagens.
+## Ler QR code ou código de barras
+
+1. Na tela inicial, toque em **Ler QR ou código de barras** e escolha a imagem (um print, uma foto recebida).
+2. A tela **Código lido** mostra o tipo (QR code, EAN-13…) e o texto completo. **Copiar** copia o texto;
+   **Compartilhar** envia para outro app; **Abrir link** aparece só para endereços `http://` ou `https://` e abre no
+   seu navegador. Confira o endereço antes de tocar: um QR pode levar a um site enganoso.
+3. Código pequeno ou longe na imagem: abra a imagem no visor (**Enquadrar no visor** ou **Escolher imagem**), dê zoom
+   no código e toque em **Ler código** no topo do visor.
+
+O app não usa internet e não guarda cópia das imagens nem histórico de leituras.
