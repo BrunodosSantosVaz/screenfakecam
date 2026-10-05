@@ -4,6 +4,85 @@ O que muda em cada versão do framework e o que um projeto precisa fazer ao atua
 SemVer: versão **maior** = o projeto precisa agir, e a seção diz como. A camada do projeto nunca é tocada.
 Cada seção tem "O que muda" e "O que o projeto precisa fazer" ("Nada." quando não há passo manual).
 
+## [1.3.0] - 2026-10-05
+
+### O que muda
+
+- **Arquivos de comunidade (DOC-16):** todo sistema tem `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md` e `SECURITY.md`,
+  criados pelo `bb init` a partir de `.bigbang/modelos/comunidade/`, ou por `bb esteira comunidade` em sistemas já
+  fundados. A CI (`bb esteira documentacao`) cobra os três.
+- **Ícone global (DOC-17):** todo sistema tem `docs/design/icone.svg`, criado no design kit (F3), mostrado no
+  protótipo e aprovado junto com ele, e usado em tudo que leva ícone (app, favicon, README). A CI cobra o arquivo
+  depois do `DESIGN.md` ou da primeira release. O modelo de README abre com o ícone.
+- O próprio Big Bang ganhou código de conduta, guia de contribuição, política de segurança e ícone.
+
+Sistemas já fundados: no PR da atualização, a IA roda `bb esteira comunidade`, completa os arquivos e cria o
+`docs/design/icone.svg` a partir do logo do `DESIGN.md` (e aplica o ícone no app, se ele ainda usar o padrão da
+plataforma, numa tarefa ou bug próprio).
+
+### O que o projeto precisa fazer
+
+Nada.
+
+## [1.2.1] - 2026-10-05
+
+### O que muda
+
+- **Bug sem branch:** o `bb assumir` de uma issue com label `bug` (ou `hotfix`) cria a branch `bugfix/<n>-<slug>`
+  (ou `hotfix/`) a partir da `main` quando ela ainda não existe; antes, a posse falhava porque nada criava a branch.
+- **Ordem de regressão em projetos Android/JVM:** o check do PR de bug reconhece como teste os arquivos em
+  `src/test/`, `src/androidTest/`, `src/testFixtures/`, `__tests__/` e os nomes `XTest`, `XTests`, `XSpec`, `XIT`
+  (Kotlin, Java, Scala, Groovy, Swift, C#); antes, um teste Kotlin no primeiro commit era tratado como correção.
+
+### O que o projeto precisa fazer
+
+Nada.
+
+## [1.2.0] - 2026-10-05
+
+### O que muda
+
+- **Perfil deploy, alvo `vps-docker`, pronto para um deploy real (E9, #112–#115):**
+  - várias imagens por sistema (`deploy.servicos = ["api=apps/api/Dockerfile", "web=apps/web/Dockerfile"]`):
+    a candidata constrói uma por serviço, `imagem.txt` registra `servico=imagem@sha256:…` por linha, o alvo publica
+    o conjunto junto e *Voltar versão* restaura o conjunto; serviços fora da lista (banco) nunca são recriados;
+  - servidor ARM64: `deploy.plataformas = ["linux/arm64"]` (buildx com QEMU; ADR-0013);
+  - health check em outro endereço: `deploy.caminho_saude` (padrão `/api/health`);
+  - `VPS_DOCKER_SUDO=true` (`sudo -n docker`), `VPS_ENV_ARQUIVO` (env-file do servidor),
+    `deploy.servico_migrar` e `deploy.servico_checar` (pré-checagem antes da migração; se falhar, nada muda no ar).
+- Todas as chaves novas são opcionais, com o comportamento anterior como padrão: um projeto com um serviço `app` e
+  `${BB_IMAGEM}` no compose continua funcionando sem mudança.
+- SBOM de cada imagem gerado pelo Trivy fixado; atestado de procedência por `subject-checksums`.
+- Correção: a migração agora roda com stdin fechado (`run -T </dev/null`); antes, um comando depois dela no mesmo
+  script remoto podia ser engolido.
+
+### O que o projeto precisa fazer
+
+Nada.
+
+## [1.1.0] - 2026-10-05
+
+### O que muda
+
+- **README sempre completo e atual (DOC-15):** modelo novo (`.bigbang/modelos/README-sistema.md`) com selos, imagem
+  real e as seções Estado atual, Para que serve, Recursos, Instalação, Como usar, Para desenvolvedores, Versões e
+  releases, Segurança e privacidade, Limitações, Contribuindo e Licença. Depois da primeira release, a CI
+  (`bb esteira documentacao`) reprova README sem essas seções, sem o selo da CI, ou que ainda diga "Fundação",
+  "em construção" ou "(a preencher)". O checklist de documentação de cada épico e as skills cobram o README.
+- **Faxina (`faxina.sh`):** no *Encerrar*, no *Publicar em produção* e no *Publicar sem release*, apaga as branches
+  mescladas cujo trabalho acabou (inclusive `framework/*` e `fundacao/*`) e lista o que sobrou (branches fora do
+  padrão, issues abertas em versão publicada, PRs parados, posses). O encerramento da sprint e a retrospectiva
+  conferem README, documentação e repositórios auxiliares sem uso.
+- `AGENTS.md`: ao terminar qualquer alteração, documentar e atualizar o README; nada fica para trás.
+- README do próprio Big Bang reescrito.
+
+Sistemas que já publicaram uma versão: a CI passa a cobrar as seções do README; no PR da atualização, a IA completa
+o `README.md` pelo modelo novo.
+
+### O que o projeto precisa fazer
+
+Nada.
+
 ## [1.0.0] - 2026-10-05
 
 ### O que muda
