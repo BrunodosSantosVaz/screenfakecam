@@ -5,6 +5,13 @@ Todas as mudanças relevantes deste sistema, no formato
 
 ## [Não publicado]
 
+## [0.3.1] - 2026-10-05
+
+### Corrigido
+
+- Rótulos dos botões de Código lido em uma linha (#61) (#62)
+- Ícone próprio do app (#64) (#65)
+
 ## [0.3.0] - 2026-10-05
 
 ### Adicionado
