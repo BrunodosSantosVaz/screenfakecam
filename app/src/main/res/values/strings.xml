@@ -10,5 +10,14 @@
     <string name="zoom_step">%1$d×</string>
     <string name="loading_image">Abrindo a imagem…</string>
     <string name="image_error">Não foi possível abrir essa imagem. Escolha outra.</string>
+    <string name="take_photo">Tirar foto</string>
+    <string name="last_photo_short">Última</string>
+    <string name="photo_error">Não foi possível salvar a foto. Tente de novo.</string>
+    <string name="saved_title">Foto salva</string>
+    <string name="saved_in_gallery">Salva na galeria em %1$s</string>
+    <string name="saved_in_place">Salva no local escolhido em %1$s</string>
+    <string name="share">Compartilhar</string>
+    <string name="take_another">Tirar outra</string>
+    <string name="share_photo_title">Compartilhar foto</string>
     <string name="home_privacy">Nada sai do seu celular. O app não usa internet.</string>
 </resources>
