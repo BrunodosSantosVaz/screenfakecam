@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">ScreenFakeCam</string>
     <string name="home_title">ScreenFakeCam</string>
-    <string name="home_subtitle">Escolha uma imagem do celular para usar como visor.</string>
+    <string name="home_subtitle">Escolha uma imagem do celular para usar como visor, ou leia o QR code de uma imagem.</string>
     <string name="choose_image">Escolher imagem</string>
     <string name="back">Voltar</string>
     <string name="viewfinder_title">Visor</string>
@@ -19,5 +19,18 @@
     <string name="share">Compartilhar</string>
     <string name="take_another">Tirar outra</string>
     <string name="share_photo_title">Compartilhar foto</string>
+    <string name="read_code">Ler QR ou código de barras</string>
+    <string name="read_code_here">Ler código</string>
+    <string name="reading_code">Lendo o código…</string>
+    <string name="code_read_title">Código lido</string>
+    <string name="code_not_found_title">Nenhum código encontrado</string>
+    <string name="code_not_found_help">Não achamos QR code nem código de barras nesta imagem. Tente uma imagem mais nítida, ou enquadre o código no visor com zoom e leia de novo.</string>
+    <string name="copy">Copiar</string>
+    <string name="copied">Texto copiado.</string>
+    <string name="open_link">Abrir link</string>
+    <string name="share_text_title">Compartilhar texto</string>
+    <string name="read_another">Ler outra imagem</string>
+    <string name="choose_another">Escolher outra</string>
+    <string name="frame_in_viewfinder">Enquadrar no visor</string>
     <string name="home_privacy">Nada sai do seu celular. O app não usa internet.</string>
 </resources>

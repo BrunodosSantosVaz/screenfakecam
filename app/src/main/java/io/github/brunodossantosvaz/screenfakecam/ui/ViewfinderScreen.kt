@@ -64,6 +64,7 @@ fun ViewfinderScreen(
     flashes: Int = 0,
     saving: Boolean = false,
     saveFailed: Boolean = false,
+    onReadCode: () -> Unit = {},
 ) {
     // Edge-to-edge (targetSdk 35+): keep the bars and controls clear of the status and navigation bars.
     Column(Modifier.fillMaxSize().background(Tokens.background).safeDrawingPadding()) {
@@ -81,7 +82,15 @@ fun ViewfinderScreen(
                 stringResource(R.string.viewfinder_title),
                 style = MaterialTheme.typography.bodyLarge,
                 color = Tokens.text,
+                modifier = Modifier.weight(1f),
             )
+            // RN-0006: read the code of what the viewfinder shows (zoom in on a small code first)
+            TextButton(
+                onClick = onReadCode,
+                modifier = Modifier.sizeIn(minWidth = Tokens.minTouch, minHeight = Tokens.minTouch),
+            ) {
+                Text(stringResource(R.string.read_code_here), color = Tokens.primary)
+            }
         }
         val description = stringResource(R.string.viewfinder_description)
         Box(
