@@ -3,6 +3,7 @@ package io.github.brunodossantosvaz.screenfakecam.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -156,8 +157,10 @@ private fun Secondary(
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(containerColor = Tokens.surface2, contentColor = Tokens.text),
+        // Three buttons share the row: the default 24 dp side padding made labels wrap below ~420 dp (#61).
+        contentPadding = PaddingValues(horizontal = Tokens.space1, vertical = Tokens.space2),
         modifier = modifier.sizeIn(minHeight = Tokens.minTouch),
-    ) { Text(label) }
+    ) { Text(label, maxLines = 1) }
 }
 
 @Composable
