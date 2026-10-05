@@ -5,8 +5,13 @@ Todas as mudanças relevantes deste sistema, no formato
 
 ## [Não publicado]
 
+## [0.2.0] - 2026-10-05
+
 ### Adicionado
 
+- Obturador, flash e tela Foto salva (#53)
+- Gravar a foto sem permissão de armazenamento (#52)
+- Recorte da foto e caso de uso do obturador (#50)
 - Obturador no visor: a foto é exatamente o que o visor mostra, na resolução da imagem, salva na galeria
   (Pictures/ScreenFakeCam) no Android 10 ou mais novo, ou onde o usuário escolher no Android 8 e 9.
 - Tela "Foto salva" com Compartilhar e Tirar outra; atalho "Última" no visor.
