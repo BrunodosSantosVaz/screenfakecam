@@ -1,9 +1,12 @@
 package io.github.brunodossantosvaz.screenfakecam.ui
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -25,6 +28,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -37,6 +41,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.brunodossantosvaz.screenfakecam.R
 import io.github.brunodossantosvaz.screenfakecam.ScreenFakeCamApp
+import io.github.brunodossantosvaz.screenfakecam.domain.LinkPolicy
 import io.github.brunodossantosvaz.screenfakecam.ui.theme.ScreenFakeCamTheme
 import io.github.brunodossantosvaz.screenfakecam.ui.theme.Tokens
 import java.text.SimpleDateFormat
@@ -53,6 +58,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ScreenFakeCamTheme {
                 val model = viewModel { ViewfinderViewModel(loader, store) }
+                val codes = viewModel { CodeViewModel(app.codeReader) }
                 var flashes by remember { mutableIntStateOf(0) }
                 // Android 8/9: no gallery write without permission (RN-0003): the user picks where to save.
                 val saveAs =
@@ -74,9 +80,38 @@ class MainActivity : ComponentActivity() {
                         if (uri != null) model.onPicked(uri.toString(), maxSide)
                     }
                 val chooseImage = { pick.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly)) }
+                val readCode = {
+                    model.close()
+                    codes.readNextPicture()
+                    chooseImage()
+                }
                 val picture = model.picture
                 val saved = model.lastPhoto
-                if (picture != null && saved != null && model.showingSaved) {
+                // Start screen asked to read a code: read the whole picture as soon as it is loaded (RN-0006).
+                LaunchedEffect(picture, codes.waitingForPicture) {
+                    if (picture != null &&
+                        codes.waitingForPicture
+                    ) {
+                        codes.read(picture, region = null, fromViewfinder = false)
+                    }
+                }
+                val outcome = codes.outcome
+                if (picture != null && outcome != null) {
+                    val leave = {
+                        codes.clear()
+                        if (!codes.fromViewfinder) model.close()
+                    }
+                    BackHandler(onBack = leave)
+                    CodeResultScreen(
+                        outcome = outcome,
+                        onCopy = ::copyText,
+                        onOpenLink = ::openLink,
+                        onShare = ::shareText,
+                        onReadAnother = readCode,
+                        onFrameInViewfinder = codes::clear,
+                        onBack = leave,
+                    )
+                } else if (picture != null && saved != null && model.showingSaved) {
                     BackHandler(onBack = model::backToViewfinder)
                     SavedPhotoScreen(
                         image = model.lastPhotoPicture?.image,
@@ -86,8 +121,13 @@ class MainActivity : ComponentActivity() {
                         onTakeAnother = model::backToViewfinder,
                         onBack = model::backToViewfinder,
                     )
-                } else if (picture == null) {
-                    HomeScreen(onChooseImage = chooseImage, loading = model.loading, failed = model.failed)
+                } else if (picture == null || codes.waitingForPicture || codes.reading) {
+                    HomeScreen(
+                        onChooseImage = chooseImage,
+                        onReadCode = readCode,
+                        loading = model.loading || codes.reading,
+                        failed = model.failed,
+                    )
                 } else {
                     BackHandler(onBack = model::close)
                     ViewfinderScreen(
@@ -104,6 +144,9 @@ class MainActivity : ComponentActivity() {
                         flashes = flashes,
                         saving = model.saving,
                         saveFailed = model.saveFailed,
+                        onReadCode = {
+                            model.framing?.let { codes.read(picture, it.visibleRegion(), fromViewfinder = true) }
+                        },
                     )
                 }
             }
@@ -126,10 +169,29 @@ private fun ComponentActivity.sharePhoto(location: String) {
     startActivity(Intent.createChooser(send, getString(R.string.share_photo_title)))
 }
 
+private fun ComponentActivity.copyText(text: String) {
+    val clipboard = getSystemService(ClipboardManager::class.java)
+    clipboard.setPrimaryClip(ClipData.newPlainText(getString(R.string.code_read_title), text))
+    Toast.makeText(this, R.string.copied, Toast.LENGTH_SHORT).show()
+}
+
+/** RN-0007: only http(s), only after the user's tap, in the user's browser. */
+private fun ComponentActivity.openLink(text: String) {
+    if (!LinkPolicy.canOpen(text)) return
+    val view = Intent(Intent.ACTION_VIEW, Uri.parse(text.trim())).addCategory(Intent.CATEGORY_BROWSABLE)
+    runCatching { startActivity(view) }
+}
+
+private fun ComponentActivity.shareText(text: String) {
+    val send = Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text)
+    startActivity(Intent.createChooser(send, getString(R.string.share_text_title)))
+}
+
 /** Start screen (also the empty state): choose an image from the system photo picker. */
 @Composable
 fun HomeScreen(
     onChooseImage: () -> Unit = {},
+    onReadCode: () -> Unit = {},
     loading: Boolean = false,
     failed: Boolean = false,
 ) {
@@ -160,6 +222,13 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxWidth().sizeIn(minHeight = Tokens.minTouch),
             ) {
                 Text(stringResource(R.string.choose_image), fontWeight = FontWeight.SemiBold)
+            }
+            Button(
+                onClick = onReadCode,
+                colors = ButtonDefaults.buttonColors(containerColor = Tokens.surface2, contentColor = Tokens.text),
+                modifier = Modifier.fillMaxWidth().sizeIn(minHeight = Tokens.minTouch),
+            ) {
+                Text(stringResource(R.string.read_code))
             }
         }
         if (failed) Text(stringResource(R.string.image_error), color = Tokens.error, textAlign = TextAlign.Center)

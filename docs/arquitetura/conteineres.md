@@ -20,4 +20,5 @@ Um único APK, um módulo Gradle (`app`). As camadas são pacotes; Konsist confe
 que `ui` não chama `infrastructure` direto. `ScreenFakeCamApp` é a raiz de composição: liga as portas de
 `application` (como `PictureLoader` e `PhotoStore`) às implementações de `infrastructure` (como
 `AndroidPictureLoader` e `AndroidPhotoStore`). O obturador é o caso de uso `Shutter` (aplicação), que recorta o
-`Framing.visibleRegion()` (domínio) e grava pela porta `PhotoStore`.
+`Framing.visibleRegion()` (domínio) e grava pela porta `PhotoStore`. O leitor usa a porta `CodeReader` (aplicação), implementada por `ZxingCodeReader`
+(infraestrutura, ZXing, sem Android nem rede); a política de links (`LinkPolicy`) é domínio puro.

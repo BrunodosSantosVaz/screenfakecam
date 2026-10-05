@@ -5,6 +5,20 @@ Todas as mudanças relevantes deste sistema, no formato
 
 ## [Não publicado]
 
+## [0.3.0] - 2026-10-05
+
+### Adicionado
+
+- Ler QR e código de barras pela tela inicial e pelo visor (#56)
+- Leitor de QR e códigos de barras com ZXing e regra de links (#51)
+- Leitor de QR code e código de barras (13 formatos), pela tela inicial ou pelo enquadramento do visor, com Copiar,
+  Compartilhar e Abrir link.
+
+### Segurança
+
+- Só endereços http/https podem ser abertos, e só por toque; outros esquemas (javascript:, intent://, file://…)
+  nunca são abertos.
+
 ## [0.2.0] - 2026-10-05
 
 ### Adicionado

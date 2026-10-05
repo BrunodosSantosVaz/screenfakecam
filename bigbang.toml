@@ -59,7 +59,7 @@ bugs = 24
 
 [ias]
 nomes = ["claude-1", "claude-2", "codex-1"]
-tarefas_por_ia = 1
+tarefas_por_ia = 3
 trava_expira_horas = 24
 espera_confirmacao_segundos = 10
 
