@@ -135,3 +135,42 @@ com ADR; **PODE** é opção. Exceção só com ADR listado em `docs/padroes/exc
 - **Errado:** link para um arquivo renomeado.
 - **Referência:** CommonMark (https://commonmark.org).
 - **Verificação:** checagem de Markdown e links no job `check` da CI.
+
+### DOC-15 · README do sistema completo e atual
+
+- **Regra:** O `README.md` do sistema DEVE estar completo e descrever o sistema como ele está em produção: selos de
+  CI, produção e homologação, uma imagem real, e as seções Estado atual, Para que serve, Recursos, Instalação, Como
+  usar, Para desenvolvedores, Versões e releases, Segurança e privacidade, Limitações conhecidas, Contribuindo e
+  Licença. Toda tarefa que muda o que o usuário vê, instala ou configura atualiza o README no mesmo PR; a tarefa de
+  documentação do épico confere o README inteiro.
+- **Por quê:** O README é a porta de entrada do sistema; um README "em construção" com versões em produção mente.
+- **Certo:** "Estado atual: v0.3.0 em produção — obturador e leitor de QR", com o print da tela principal.
+- **Errado:** "Em Fundação" depois da primeira release; seções "(a preencher)".
+- **Referência:** modelo `.bigbang/modelos/README-sistema.md`; o README do próprio Big Bang como exemplo de nível.
+- **Verificação:** `bb esteira documentacao` no job `check` da CI (depois da primeira release, seções obrigatórias,
+  selo da CI e nada de "Fundação", "em construção" ou "(a preencher)"); checklist da tarefa de documentação.
+
+### DOC-16 · Arquivos de comunidade
+
+- **Regra:** Todo sistema DEVE ter `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md` e `SECURITY.md` na raiz, além do
+  `README.md` e da licença (se público), para o GitHub mostrar o perfil de comunidade completo.
+- **Por quê:** Quem chega ao repositório precisa saber como se comportar, como contribuir e como relatar uma falha
+  de segurança sem expô-la em público.
+- **Certo:** os três arquivos criados pelo `bb init` (ou `bb esteira comunidade`) e completados pelo projeto.
+- **Errado:** repositório só com README e licença; falha de segurança relatada numa issue pública.
+- **Referência:** modelos em `.bigbang/modelos/comunidade/`; Contributor Covenant 2.1; relato privado de
+  vulnerabilidade do GitHub.
+- **Verificação:** `bb esteira documentacao` no job `check` da CI, em todo sistema fundado.
+
+### DOC-17 · Ícone global do sistema
+
+- **Regra:** Todo sistema DEVE ter um único ícone, `docs/design/icone.svg`, criado no design kit (F3), mostrado no
+  protótipo e aprovado junto com ele, e usado em tudo que leva ícone: ícone do app (launcher), favicon, manifesto
+  PWA, cabeçalho do README e imagem do repositório.
+- **Por quê:** Um sistema sem ícone próprio aparece com o ícone padrão da plataforma e parece inacabado; ícones
+  diferentes em cada lugar confundem quem usa.
+- **Certo:** o SVG aprovado no protótipo gera o ícone adaptativo do Android e o favicon.
+- **Errado:** app com o robô padrão do Android; favicon diferente do ícone do app.
+- **Referência:** `DESIGN.md` (seção Identidade); skill `bb-design-kit`.
+- **Verificação:** `bb esteira documentacao` no job `check` da CI (depois do `DESIGN.md` ou da primeira release);
+  aprovação do protótipo pelo dono.
