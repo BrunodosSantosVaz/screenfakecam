@@ -32,7 +32,7 @@ private class ShutterCamera(
     private val saved = mutableListOf<Pair<PhotoTaken, IntArray>>()
 
     private val shutter =
-        Shutter<IntArray> { chosen, region ->
+        Shutter<IntArray> { chosen, region, _ ->
             val copy = IntArray(region.width * region.height)
             for (y in 0 until region.height) {
                 System.arraycopy(
