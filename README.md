@@ -1,28 +1,154 @@
+<p align="center"><img src="docs/design/icone.svg" alt="" width="96"></p>
+
 # ScreenFakeCam
 
-Sistema em construção com o [Big Bang](.bigbang/README.md), um framework para uma pessoa e suas IAs planejarem,
-construírem e manterem sistemas profissionais.
+[![CI](https://github.com/BrunodosSantosVaz/screenfakecam/actions/workflows/bb-ci.yml/badge.svg)](https://github.com/BrunodosSantosVaz/screenfakecam/actions/workflows/bb-ci.yml)
+[![Produção](https://img.shields.io/github/v/release/BrunodosSantosVaz/screenfakecam?label=produ%C3%A7%C3%A3o&color=success)](https://github.com/BrunodosSantosVaz/screenfakecam/releases/latest)
+[![Homologação](https://img.shields.io/github/v/release/BrunodosSantosVaz/screenfakecam?include_prereleases&label=homologa%C3%A7%C3%A3o&color=orange)](https://github.com/BrunodosSantosVaz/screenfakecam/releases)
+[![Licença GPL-3.0](https://img.shields.io/badge/licen%C3%A7a-GPL--3.0-blue)](LICENSE)
+![Android 8.0+](https://img.shields.io/badge/Android-8.0%2B-3DDC84)
+[![Feito com o Big Bang](https://img.shields.io/badge/feito%20com-Big%20Bang-ffc107)](https://github.com/BrunodosSantosVaz/big-bang)
 
-## Situação
+Uma câmera para Android cujo visor é uma **imagem guardada no celular**: você enquadra a imagem (zoom e posição) e
+aperta o obturador quando quiser. O app também lê **QR code e código de barras** de uma imagem. Totalmente offline.
 
-Em **Fundação**: as decisões de produto, stack, design e GitHub ainda estão sendo tomadas. Acompanhe pelas issues com a
-label `fundacao`.
+![Telas do ScreenFakeCam: tela inicial, visor com zoom 2× sobre um QR code, foto salva na galeria e código lido com Copiar, Abrir link e Compartilhar](docs/imagens/telas.png)
 
-## Para quem trabalha neste repositório
+## Índice
 
-- Abra sua IA na pasta e diga o que quer fazer; as instruções para IAs estão em `AGENTS.md`.
-- O que o sistema é: `PRODUTO.md`. A stack: `STACK.md`. O design: `DESIGN.md` (nascem na Fundação).
-- O processo de trabalho: `.bigbang/processo/`.
+- [Estado atual](#estado-atual)
+- [Para que serve](#para-que-serve)
+- [Recursos](#recursos)
+- [Instalação](#instalação)
+- [Como usar](#como-usar)
+- [Para desenvolvedores](#para-desenvolvedores)
+- [Versões e releases](#versões-e-releases)
+- [Segurança e privacidade](#segurança-e-privacidade)
+- [Limitações conhecidas](#limitações-conhecidas)
+- [Contribuindo](#contribuindo)
+- [Licença](#licença)
 
-## Instalar e usar
+## Estado atual
 
-Veja [docs/guia/usar.md](docs/guia/usar.md). O APK assinado de cada versão fica nas
-[Releases](https://github.com/BrunodosSantosVaz/screenfakecam/releases).
+Em produção desde a **v0.1.0**; a **v0.3.0** entregou o leitor de QR e código de barras, depois do obturador com a
+foto salva na galeria (v0.2.0). A versão mais recente está nas
+[Releases](https://github.com/BrunodosSantosVaz/screenfakecam/releases/latest), e o que vem a seguir está nas
+[issues](https://github.com/BrunodosSantosVaz/screenfakecam/issues).
 
-## Desenvolver
+O ScreenFakeCam é o primeiro sistema feito do zero com o framework [Big Bang](https://github.com/BrunodosSantosVaz/big-bang):
+da entrevista do produto à publicação, tudo passou pela esteira (testes de aceite travados, homologação e produção).
 
-Android Studio ou, na linha de comando, JDK 17+ e Android SDK (`JAVA_HOME`, `ANDROID_HOME`): os comandos estão em
-`bigbang.toml` (`[comandos]`), por exemplo `./gradlew testDebugUnitTest`. Pegadinhas em `docs/memoria.md`.
+## Para que serve
 
-<!-- A IA completa este README ao fim da Fundação: o que o sistema faz, como rodar localmente, variáveis de ambiente
-     (sem valores) e como publicar. -->
+Às vezes a imagem que você precisa entregar já está no celular (um print, um documento escaneado, um QR code
+recebido por mensagem), mas o app que pede a foto só oferece a câmera. O ScreenFakeCam abre essa imagem como se
+fosse o visor de uma câmera: você enquadra e "fotografa", e a foto vai para a galeria, pronta para ser escolhida em
+qualquer app. Para QR code e código de barras, ele lê direto da imagem, sem precisar de outra tela para apontar.
+
+## Recursos
+
+- **Visor parado numa imagem do celular**, escolhida pelo seletor de fotos do Android (sem acesso amplo à galeria).
+- **Zoom de 1× a 4×** (botões ou dois dedos) e **enquadramento** arrastando; o enquadramento nunca sai da imagem.
+- **Obturador manual**: a foto é exatamente o que o visor mostra, na resolução da imagem original, que nunca é
+  alterada; nada é disparado sozinho.
+- **Foto salva na galeria** (Pictures/ScreenFakeCam no Android 10 ou mais novo; no 8 e 9, onde você escolher), com
+  **Compartilhar**, **Tirar outra** e o atalho **Última**.
+- **Leitor de QR code e código de barras** (13 formatos, entre eles QR, EAN-13, Code 128 e Data Matrix), pela tela
+  inicial ou pelo botão **Ler código** do visor, para códigos pequenos depois do zoom.
+- **Copiar, Compartilhar e Abrir link**: só endereços `http://` e `https://` podem ser abertos, e só por toque.
+- Interface em português, tema escuro, usável a partir de 360 dp de largura.
+
+## Instalação
+
+1. No celular Android **8.0 ou mais novo**, abra a página de
+   [Releases](https://github.com/BrunodosSantosVaz/screenfakecam/releases/latest) e baixe
+   `screenfakecam-vX.Y.Z-android.apk`.
+2. Abra o arquivo baixado. Na primeira vez, o Android pede para permitir a instalação de apps do navegador ou do
+   gerenciador de arquivos: permita só para essa instalação.
+3. Para atualizar, instale a versão nova por cima: todas são assinadas com a mesma chave.
+
+Conferir o download (opcional): cada Release traz o `SHA256SUMS-android.txt` e o atestado de origem do APK:
+
+```bash
+sha256sum -c SHA256SUMS-android.txt
+gh attestation verify screenfakecam-vX.Y.Z-android.apk --repo BrunodosSantosVaz/screenfakecam
+```
+
+## Como usar
+
+1. **Escolher imagem** → a imagem aparece parada no visor.
+2. Use **1×, 2×, 4×** ou dois dedos para o zoom e arraste para enquadrar.
+3. Aperte o **obturador** (o círculo branco). A tela **Foto salva** mostra a foto e oferece **Compartilhar** ou
+   **Tirar outra**.
+4. Para um código: **Ler QR ou código de barras** na tela inicial, ou **Ler código** no visor depois de dar zoom.
+
+O passo a passo completo, com os detalhes de cada versão do Android, está no [guia de uso](docs/guia/usar.md).
+
+## Para desenvolvedores
+
+**Stack:** Kotlin 2.4 + Jetpack Compose (Material 3), minSdk 26, ZXing para os códigos; sem servidor, sem banco,
+sem internet. Decisões em [`STACK.md`](STACK.md) e [`docs/decisoes/`](docs/decisoes/).
+
+**Estrutura:**
+
+| Pasta | O que tem |
+| --- | --- |
+| `app/src/main/java/.../domain` | regras puras: enquadramento, recorte, política de links |
+| `app/src/main/java/.../application` | casos de uso: carregar imagem, obturador, ler código |
+| `app/src/main/java/.../infrastructure` | Android: seletor, MediaStore, ZXing |
+| `app/src/main/java/.../ui` | telas em Compose e ViewModels |
+| `tests/aceite/` | testes de aceite de cada épico (travados: só a esteira muda) |
+| `packaging/android/` | build do APK assinado |
+| `docs/` | produto, negócio, arquitetura, design, guia e operação |
+
+**Rodar a partir do código:** Android Studio, ou JDK 17+ e Android SDK (`JAVA_HOME`, `ANDROID_HOME`) na linha de
+comando. Os comandos ficam em `bigbang.toml` (`[comandos]`):
+
+```bash
+./gradlew testDebugUnitTest            # testes (unitários, de tela com Robolectric e de aceite)
+./gradlew lint ktlintCheck             # lint
+./gradlew koverVerifyDebug             # cobertura mínima
+./gradlew assembleDebug                # APK de desenvolvimento
+```
+
+O APK de produção é assinado só na esteira, com os segredos `BB_ASSINATURA_*` do repositório; não há variáveis de
+ambiente de execução. Instruções para IAs em [`AGENTS.md`](AGENTS.md); pegadinhas em
+[`docs/memoria.md`](docs/memoria.md); processo de trabalho em [`.bigbang/processo/`](.bigbang/processo/).
+
+## Versões e releases
+
+- **Produção:** cada [Release](https://github.com/BrunodosSantosVaz/screenfakecam/releases/latest) `vX.Y.Z` traz o
+  APK assinado, o `SHA256SUMS-android.txt` e o atestado de origem: são os mesmos bytes que foram homologados.
+- **Homologação:** as pre-releases `vX.Y.Z-rc.N` são candidatas para teste; não instale no uso do dia a dia.
+- O que mudou em cada versão: [`CHANGELOG.md`](CHANGELOG.md). Versões em [SemVer](https://semver.org/lang/pt-BR/).
+
+## Segurança e privacidade
+
+- O app **não pede permissão de internet**: nada sai do celular. Sem conta, sem analytics, sem anúncios.
+- Lê só a imagem que você escolhe no seletor do Android; não guarda cópia nem histórico. O que sai do app é a foto
+  salva a seu pedido.
+- Links lidos de QR só abrem com o seu toque, no seu navegador, e só `http://`/`https://`. Confira o endereço:
+  um QR pode levar a um site enganoso.
+- Encontrou uma falha de segurança? Siga a [política de segurança](SECURITY.md): relato privado, nunca numa issue
+  pública.
+
+## Limitações conhecidas
+
+- **Não substitui a câmera dentro de outros apps:** apps que abrem a própria câmera ao vivo não veem o
+  ScreenFakeCam, e a partir do Android 11 só câmeras pré-instaladas recebem o pedido "tirar foto" de outro app
+  ([ADR-0002](docs/decisoes/ADR-0002-sem-camera-para-outros-apps.md)). Use a foto salva na galeria.
+- Câmera virtual por root ou injeção está fora do escopo de propósito: serve para enganar verificações de presença.
+- Sem versão para iPhone; sem edição além de zoom e enquadramento; sem vídeo.
+- No Android 8 e 9, salvar a foto pergunta onde guardar (o app não pede permissão de armazenamento).
+
+## Contribuindo
+
+Pedidos e bugs pelas [issues](https://github.com/BrunodosSantosVaz/screenfakecam/issues), nos formulários do
+repositório; o passo a passo está em [CONTRIBUTING.md](CONTRIBUTING.md), e vale o
+[código de conduta](CODE_OF_CONDUCT.md). O trabalho segue a esteira do Big Bang: todo bug ganha primeiro um teste que falha, toda mudança chega
+por PR revisado e passa pela homologação antes da produção.
+
+## Licença
+
+[GPL-3.0](LICENSE). O framework Big Bang, em `.bigbang/`, é MIT (`.bigbang/LICENSE`). Componentes de terceiros:
+ZXing (Apache-2.0) e as bibliotecas AndroidX/Jetpack Compose (Apache-2.0).
