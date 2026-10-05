@@ -10,11 +10,15 @@ data class SavedPhoto(
     val height: Int,
 )
 
-/** Saves a NEW image with the [region] of [picture]; never writes to the chosen image (RN-0005). Null on failure. */
+/**
+ * Saves a NEW image with the [region] of [picture]; never writes to the chosen image (RN-0005). [destination] is a
+ * place the user chose (Android 8/9 "save as"); null means the gallery. Null result on failure.
+ */
 fun interface PhotoStore<T> {
     suspend fun save(
         picture: Picture<T>,
         region: ImageRegion,
+        destination: String?,
     ): SavedPhoto?
 }
 
@@ -25,5 +29,6 @@ class Shutter<T>(
     suspend fun press(
         picture: Picture<T>,
         framing: Framing,
-    ): SavedPhoto? = store.save(picture, framing.visibleRegion())
+        destination: String? = null,
+    ): SavedPhoto? = store.save(picture, framing.visibleRegion(), destination)
 }

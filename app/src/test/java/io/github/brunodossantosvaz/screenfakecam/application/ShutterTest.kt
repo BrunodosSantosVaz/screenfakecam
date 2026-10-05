@@ -14,7 +14,7 @@ class ShutterTest {
     fun savesTheVisibleRegion() {
         val asked = mutableListOf<ImageRegion>()
         val shutter =
-            Shutter<String> { _, region ->
+            Shutter<String> { _, region, _ ->
                 asked += region
                 SavedPhoto("content://foto/1", region.width, region.height)
             }
@@ -25,7 +25,7 @@ class ShutterTest {
 
     @Test
     fun aFailedSaveIsNull() {
-        val shutter = Shutter<String> { _, _ -> null }
+        val shutter = Shutter<String> { _, _, _ -> null }
         assertNull(runBlocking { shutter.press(picture, Framing(1000, 800, 500, 400)) })
     }
 }
