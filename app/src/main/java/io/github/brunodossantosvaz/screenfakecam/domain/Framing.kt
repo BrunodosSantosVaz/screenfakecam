@@ -2,6 +2,7 @@ package io.github.brunodossantosvaz.screenfakecam.domain
 
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.roundToInt
 
 /**
  * What the viewfinder shows of the chosen image: zoom and position. Pure Kotlin, immutable.
@@ -35,6 +36,26 @@ data class Framing(
         dy: Float,
     ): Framing = copy(offsetX = offsetX + dx, offsetY = offsetY + dy).clamped()
 
+    /**
+     * RN-0004: the part of the image the viewfinder shows, in image pixels: what the shutter turns into a photo.
+     * At zoom 1 it is the whole image; the empty bands around a letterboxed image are never part of it.
+     */
+    fun visibleRegion(): ImageRegion {
+        val scale = fitScale * zoom
+        val shownLeft = (viewWidth - imageWidth * scale) / 2f + offsetX
+        val shownTop = (viewHeight - imageHeight * scale) / 2f + offsetY
+        val left = ((max(0f, shownLeft) - shownLeft) / scale).roundToInt().coerceIn(0, imageWidth - 1)
+        val top = ((max(0f, shownTop) - shownTop) / scale).roundToInt().coerceIn(0, imageHeight - 1)
+        val right = ((min(viewWidth.toFloat(), shownLeft + imageWidth * scale) - shownLeft) / scale).roundToInt()
+        val bottom = ((min(viewHeight.toFloat(), shownTop + imageHeight * scale) - shownTop) / scale).roundToInt()
+        return ImageRegion(
+            left = left,
+            top = top,
+            width = (right.coerceIn(left + 1, imageWidth) - left),
+            height = (bottom.coerceIn(top + 1, imageHeight) - top),
+        )
+    }
+
     private fun clamped(): Framing {
         val limitX = max(0f, (imageWidth * fitScale * zoom - viewWidth) / 2f)
         val limitY = max(0f, (imageHeight * fitScale * zoom - viewHeight) / 2f)
@@ -46,3 +67,11 @@ data class Framing(
         const val MAX_ZOOM = 4f
     }
 }
+
+/** A rectangle of the image, in image pixels. */
+data class ImageRegion(
+    val left: Int,
+    val top: Int,
+    val width: Int,
+    val height: Int,
+)

@@ -3,6 +3,7 @@ package io.github.brunodossantosvaz.screenfakecam.ui
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -23,6 +24,7 @@ class ViewfinderScreenTest {
         framing: Framing = Framing(100, 80, 50, 40),
         onZoomTo: (Float) -> Unit = {},
         onBack: () -> Unit = {},
+        onShutter: () -> Unit = {},
     ) = compose.setContent {
         ScreenFakeCamTheme {
             ViewfinderScreen(
@@ -33,6 +35,7 @@ class ViewfinderScreenTest {
                 onZoomBy = {},
                 onDrag = { _, _ -> },
                 onBack = onBack,
+                onShutter = onShutter,
             )
         }
     }
@@ -57,5 +60,13 @@ class ViewfinderScreenTest {
         show(onBack = { back = true })
         compose.onNodeWithText("Voltar").performClick()
         assertTrue(back)
+    }
+
+    @Test
+    fun theShutterTakesThePhoto() {
+        var taken = 0
+        show(onShutter = { taken++ })
+        compose.onNodeWithContentDescription("Tirar foto").performClick()
+        assertEquals(1, taken)
     }
 }

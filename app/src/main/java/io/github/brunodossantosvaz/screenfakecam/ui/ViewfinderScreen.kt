@@ -1,8 +1,12 @@
 package io.github.brunodossantosvaz.screenfakecam.ui
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,14 +17,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.ImageBitmap
@@ -29,6 +38,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
@@ -48,6 +58,12 @@ fun ViewfinderScreen(
     onZoomBy: (Float) -> Unit,
     onDrag: (Float, Float) -> Unit,
     onBack: () -> Unit,
+    onShutter: () -> Unit = {},
+    hasLastPhoto: Boolean = false,
+    onShowLastPhoto: () -> Unit = {},
+    flashes: Int = 0,
+    saving: Boolean = false,
+    saveFailed: Boolean = false,
 ) {
     // Edge-to-edge (targetSdk 35+): keep the bars and controls clear of the status and navigation bars.
     Column(Modifier.fillMaxSize().background(Tokens.background).safeDrawingPadding()) {
@@ -100,9 +116,72 @@ fun ViewfinderScreen(
                 onZoomTo = onZoomTo,
                 modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = Tokens.space4),
             )
+            Flash(flashes)
         }
-        Box(Modifier.fillMaxWidth().height(Tokens.shutter + Tokens.space6 * 2).background(Tokens.background))
+        if (saveFailed) {
+            Text(
+                stringResource(R.string.photo_error),
+                color = Tokens.error,
+                modifier = Modifier.fillMaxWidth().padding(Tokens.space3),
+            )
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .height(
+                    Tokens.shutter + Tokens.space6 * 2,
+                ).background(Tokens.background)
+                .padding(horizontal = Tokens.space6),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Box(Modifier.size(Tokens.minTouch)) {
+                if (hasLastPhoto) {
+                    TextButton(onClick = onShowLastPhoto, modifier = Modifier.size(Tokens.minTouch)) {
+                        Text(
+                            stringResource(R.string.last_photo_short),
+                            color = Tokens.text,
+                            style = MaterialTheme.typography.labelMedium,
+                        )
+                    }
+                }
+            }
+            ShutterButton(onShutter = onShutter, enabled = framing != null && !saving)
+            Box(Modifier.size(Tokens.minTouch))
+        }
     }
+}
+
+/** The shutter (DESIGN.md): a white 76 dp circle with a ring. The photo is only taken here (RN-0005). */
+@Composable
+private fun ShutterButton(
+    onShutter: () -> Unit,
+    enabled: Boolean,
+) {
+    val label = stringResource(R.string.take_photo)
+    Box(
+        Modifier
+            .size(Tokens.shutter + Tokens.space3)
+            .border(Tokens.space1, Tokens.text, CircleShape)
+            .padding(Tokens.space2)
+            .clip(CircleShape)
+            .background(if (enabled) Tokens.text else Tokens.textSecondary)
+            .clickable(enabled = enabled, onClickLabel = label, role = Role.Button, onClick = onShutter)
+            .semantics { contentDescription = label },
+    )
+}
+
+/** A short white flash when a photo is taken. */
+@Composable
+private fun Flash(flashes: Int) {
+    val alpha = remember { Animatable(0f) }
+    LaunchedEffect(flashes) {
+        if (flashes > 0) {
+            alpha.snapTo(0.85f)
+            alpha.animateTo(0f, tween(durationMillis = 300))
+        }
+    }
+    if (alpha.value > 0f) Box(Modifier.fillMaxSize().background(Tokens.text.copy(alpha = alpha.value)))
 }
 
 @Composable

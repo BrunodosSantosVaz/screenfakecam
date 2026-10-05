@@ -18,4 +18,6 @@ C4Container
 
 Um único APK, um módulo Gradle (`app`). As camadas são pacotes; Konsist confere que `domain` não depende de nada e
 que `ui` não chama `infrastructure` direto. `ScreenFakeCamApp` é a raiz de composição: liga as portas de
-`application` (como `PictureLoader`) às implementações de `infrastructure` (como `AndroidPictureLoader`).
+`application` (como `PictureLoader` e `PhotoStore`) às implementações de `infrastructure` (como
+`AndroidPictureLoader` e `AndroidPhotoStore`). O obturador é o caso de uso `Shutter` (aplicação), que recorta o
+`Framing.visibleRegion()` (domínio) e grava pela porta `PhotoStore`.

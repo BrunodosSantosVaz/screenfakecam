@@ -14,6 +14,12 @@
 1. Toque em **Escolher imagem** e escolha uma imagem no seletor de fotos do Android.
 2. A imagem aparece parada no visor. Use **1×, 2× e 4×** ou dois dedos para o zoom (até 4×) e arraste para
    enquadrar; o enquadramento nunca sai da imagem.
-3. **Voltar** (ou o gesto de voltar do Android) retorna à tela inicial e descarta a imagem.
+3. Aperte o **obturador** (o círculo branco embaixo) para tirar a foto do que o visor mostra. A foto tem a
+   resolução da imagem, não a da tela; a imagem escolhida nunca é alterada.
+   - Android 10 ou mais novo: a foto vai para a galeria, na pasta **Pictures/ScreenFakeCam**.
+   - Android 8 ou 9: o Android pergunta onde salvar (o app não pede permissão de armazenamento).
+4. Na tela **Foto salva**: **Compartilhar** abre a lista de apps do Android; **Tirar outra** volta ao visor. No visor,
+   **Última** mostra a última foto de novo.
+5. **Voltar** (ou o gesto de voltar do Android) retorna à tela inicial e descarta a imagem.
 
 O app não usa internet e não guarda cópia das imagens.
