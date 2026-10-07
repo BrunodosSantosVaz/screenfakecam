@@ -66,12 +66,12 @@ C4Container
 
 ## Cobertura mínima
 
-{{testes.cobertura_minima}}% nas camadas de domínio e aplicação.
+80% nas camadas de domínio e aplicação, conforme `[testes].cobertura_minima` em `bigbang.toml` e a configuração do Kover.
 
 ## Configuração da esteira
 
 <!-- bb:config:inicio -->
-<!-- Gerado pelo Big Bang v1.3.1 a partir de bigbang.toml. Não edite: personalize em bigbang.toml. -->
+<!-- Gerado pelo Big Bang v1.4.0 a partir de bigbang.toml. Não edite: personalize em bigbang.toml. -->
 
 **Perfil de entrega:** `compilado`
 

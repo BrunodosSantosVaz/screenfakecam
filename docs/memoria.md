@@ -38,3 +38,18 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 
 - O manifesto não pede internet, armazenamento amplo nem câmera; `PermissionsTest` reprova se alguém acrescentar.
 - A assinatura do APK só existe na CI, nos segredos `BB_ASSINATURA_*`; keystore nunca entra no repositório.
+
+- Épico #71 corrige somente documentos da produção. #73 registra critérios/procedimentos antes de #74, reutiliza 16 aceites vigentes intactos e exige leitura independente além da CI documental. Teclado (#70) e SBOM (#72) têm correções próprias; não inventar homologação física.
+
+## Operação e documentação (#71)
+
+- README/guia descrevem resolução do bitmap decodificado, com redução possível de imagens grandes; não prometer
+  resolução original ou teto exato ainda não demonstrado. RN-0004 e os aceites permanecem intactos.
+- Runbooks em docs/operacao/README.md: APK não tem rollback de servidor. Downgrade por cima é bloqueado por
+  versionCode; preferir correção nova com mesma chave. Backup do keystore não foi comprovado pelo acesso público.
+- Offline significa ausência de permissão de internet no app; Compartilhar/Abrir link/área de transferência passam
+  conteúdo ao Android/outro app. Fotos salvas são externas e dependem da política da galeria/provedor.
+
+- Conferência documental #75 em docs/validacao/71-documentacao-producao.md separa entrega documental dos bugs
+  ainda não publicados. A próxima release deve atualizar versão/limitações do README e registrar ensaio Android
+  com hash exato; não transportar evidência de APK antigo para uma candidata nova.
