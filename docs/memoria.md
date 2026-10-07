@@ -76,3 +76,8 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 - Homologação real feita pelo agente autorizado em Android 15/API 35 emulado, sem alegar aparelho físico ou teste
   manual do dono. Screenshot real em docs/imagens/keyboard-zoom-032.png. Bugs #70/#72/#81 publicados e fechados;
   SBOM 303/101 Maven contém todos os 100 módulos do lock. Ensaios de keystore/downgrade/TalkBack integral não realizados.
+
+- Conferência #87 em docs/validacao/84-producao-032.md: implementação #86/PR #89 fonte ce47f056...,
+  merge 9e1100b7..., CI/Regras/Segurança/CodeQL exatos verdes e revisão independente. Pós-merge falhou por
+  variável do framework ausente; branch #87 criada pelo workflow canônico 37593154761 após simulação verde.
+  Artefato/framework/RNs/aceites intactos; publicação documental sem release acompanha o status do épico #84.
