@@ -15,7 +15,8 @@
 2. A imagem aparece parada no visor. Use **1×, 2× e 4×** ou dois dedos para o zoom (até 4×) e arraste para
    enquadrar; o enquadramento nunca sai da imagem.
 3. Aperte o **obturador** (o círculo branco embaixo) para tirar a foto do que o visor mostra. A foto tem a
-   resolução da imagem, não a da tela; a imagem escolhida nunca é alterada.
+   resolução da imagem decodificada, não a da tela. O lado maior decodificado é limitado ao dobro do lado
+   maior da tela, em pixels; arquivos grandes podem perder resolução ao carregar. O arquivo original nunca é alterado.
    - Android 10 ou mais novo: a foto vai para a galeria, na pasta **Pictures/ScreenFakeCam**.
    - Android 8 ou 9: o Android pergunta onde salvar (o app não pede permissão de armazenamento).
 4. Na tela **Foto salva**: **Compartilhar** abre a lista de apps do Android; **Tirar outra** volta ao visor. No visor,

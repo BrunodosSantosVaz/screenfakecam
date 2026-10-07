@@ -30,8 +30,8 @@ aperta o obturador quando quiser. O app também lê **QR code e código de barra
 
 ## Estado atual
 
-Em produção desde a **v0.1.0**; a **v0.3.0** entregou o leitor de QR e código de barras, depois do obturador com a
-foto salva na galeria (v0.2.0). A versão mais recente está nas
+A **v0.3.1** está em produção: leitor de QR/código de barras (v0.3.0), obturador com foto salva na galeria
+(v0.2.0), rótulos de leitura ajustados e ícone próprio. A versão mais recente está nas
 [Releases](https://github.com/BrunodosSantosVaz/screenfakecam/releases/latest), e o que vem a seguir está nas
 [issues](https://github.com/BrunodosSantosVaz/screenfakecam/issues).
 
@@ -49,8 +49,9 @@ qualquer app. Para QR code e código de barras, ele lê direto da imagem, sem pr
 
 - **Visor parado numa imagem do celular**, escolhida pelo seletor de fotos do Android (sem acesso amplo à galeria).
 - **Zoom de 1× a 4×** (botões ou dois dedos) e **enquadramento** arrastando; o enquadramento nunca sai da imagem.
-- **Obturador manual**: a foto é exatamente o que o visor mostra, na resolução da imagem original, que nunca é
-  alterada; nada é disparado sozinho.
+- **Obturador manual**: a foto recorta o que o visor mostra, na resolução da imagem decodificada. Imagens grandes
+  são reduzidas ao carregar: o lado maior decodificado fica no máximo no dobro do lado maior da tela, em pixels.
+  O arquivo original não é alterado e nada é disparado sozinho.
 - **Foto salva na galeria** (Pictures/ScreenFakeCam no Android 10 ou mais novo; no 8 e 9, onde você escolher), com
   **Compartilhar**, **Tirar outra** e o atalho **Última**.
 - **Leitor de QR code e código de barras** (13 formatos, entre eles QR, EAN-13, Code 128 e Data Matrix), pela tela
@@ -138,6 +139,10 @@ ambiente de execução. Instruções para IAs em [`AGENTS.md`](AGENTS.md); pegad
   ScreenFakeCam, e a partir do Android 11 só câmeras pré-instaladas recebem o pedido "tirar foto" de outro app
   ([ADR-0002](docs/decisoes/ADR-0002-sem-camera-para-outros-apps.md)). Use a foto salva na galeria.
 - Câmera virtual por root ou injeção está fora do escopo de propósito: serve para enganar verificações de presença.
+- Imagens grandes podem perder resolução ao carregar; o recorte usa o bitmap decodificado, sem garantia de
+  preservar todos os pixels do arquivo original.
+- A correção do teto de resolução está no [bug #81](https://github.com/BrunodosSantosVaz/screenfakecam/issues/81);
+  só uma Release posterior à v0.3.1 entrega essa correção ao usuário.
 - Sem versão para iPhone; sem edição além de zoom e enquadramento; sem vídeo.
 - No Android 8 e 9, salvar a foto pergunta onde guardar (o app não pede permissão de armazenamento).
 

@@ -40,7 +40,8 @@ class AndroidPictureLoader(
         stream.use { BitmapFactory.decodeStream(it, null, bounds) }
         if (bounds.outWidth <= 0 || bounds.outHeight <= 0) return null
         var sample = 1
-        while (maxOf(bounds.outWidth, bounds.outHeight) / (sample * 2) >= maxSide) sample *= 2
+        // Ceiling division keeps the decoded long side at most maxSide, including odd source dimensions.
+        while ((maxOf(bounds.outWidth, bounds.outHeight) - 1) / sample >= maxSide) sample *= 2
         val options = BitmapFactory.Options().apply { inSampleSize = sample }
         val bitmap = resolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, options) } ?: return null
         val upright = rotate(bitmap, orientation(uri))

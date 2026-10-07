@@ -11,6 +11,12 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 
 ## Build e testes
 
+- Teto de decodificação (#81, RN-0004): escolher potência de dois até ceil(lado/sample)<=maxSide; comparar a
+  próxima amostra para preservar lado>=maxSide excedia o teto. MainActivity passa duas vezes o lado maior da tela.
+  O teste unitário antigo esperava 800 para maxSide 500 e foi corrigido para 400 no commit de regressão; aceites/RN
+  ficaram intactos. PNG 10000/maxSide 4800 reproduziu largura 5000 antes do fix. Redução pode ficar abaixo do teto
+  por amostragem em potência de dois; não prometer conservação dos pixels originais.
+
 - `compileSdk = 37`: as bibliotecas do Compose 1.12 (BOM 2026.09) exigem compilar contra a API 37; `targetSdk` segue 36.
 - Robolectric roda na imagem do **Android 35** (`app/src/test/resources/robolectric.properties`): na 36 ele falha com
   "Failed to interact with raw FileDescriptor internals" no JDK 21. Os testes também precisam de
