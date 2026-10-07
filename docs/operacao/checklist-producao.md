@@ -14,3 +14,20 @@ banco e sem login (perfil compilado): os itens de backend e de API não se aplic
 - [ ] /api/health responde sem autenticação — verificação: `nao-se-aplica: app sem servidor`
 - [ ] O README documenta as variáveis de ambiente sem valores — verificação: `portao: builtin`
 - [ ] A auditoria de segurança não tem achado crítico ou alto aberto — verificação: `portao: builtin`
+
+## Procedimentos e evidências
+
+As verificações acima são resolvidas pelo portão de cada entrega, não marcadas como executadas por esta tarefa de
+documentação. O épico #71 é sem-release e não produz APK; a próxima candidata de correção deve preencher evidências
+próprias de hash/assinatura/atestado, instalação e cenários efetivamente executados.
+
+- [Entrega compilada](entrega.md): integra PRs revisados e CI no SHA exato; verifica APK/checksum/SBOM/atestado,
+  homologa a candidata e promove os mesmos bytes sem recompilar.
+- [Assinatura](assinatura.md): certificado público, nomes dos segredos sem valores, backup privado a comprovar,
+  restauração em ambiente isolado e limites de troca de chave.
+- [Retorno](voltar-versao.md): limite de downgrade Android e correção compatível com versão maior; nenhum retorno
+  real ou recuperação de keystore foi exercitado por este épico documental.
+- [Incidente](incidente.md) e [dados locais](../dados/inventario.md): relatos mínimos sem imagens pessoais,
+  compartilhamento por ação do usuário, retenção e backup das fotos externas.
+
+Rastreabilidade/documentação: [conferência do épico #71](../validacao/71-documentacao-producao.md).
