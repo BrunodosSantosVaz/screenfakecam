@@ -32,3 +32,5 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 
 - O manifesto não pede internet, armazenamento amplo nem câmera; `PermissionsTest` reprova se alguém acrescentar.
 - A assinatura do APK só existe na CI, nos segredos `BB_ASSINATURA_*`; keystore nunca entra no repositório.
+
+- Épico #71 corrige somente documentos da produção. #73 registra critérios/procedimentos antes de #74, reutiliza 16 aceites vigentes intactos e exige leitura independente além da CI documental. Teclado (#70) e SBOM (#72) têm correções próprias; não inventar homologação física.
