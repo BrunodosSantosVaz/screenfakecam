@@ -10,7 +10,7 @@
 [![Feito com o Big Bang](https://img.shields.io/badge/feito%20com-Big%20Bang-ffc107)](https://github.com/BrunodosSantosVaz/big-bang)
 
 Uma câmera para Android cujo visor é uma **imagem guardada no celular**: você enquadra a imagem (zoom e posição) e
-aperta o obturador quando quiser. O app também lê **QR code e código de barras** de uma imagem. Totalmente offline.
+aperta o obturador quando quiser. O app também lê **QR code e código de barras** de uma imagem, sem usar internet.
 
 ![Telas do ScreenFakeCam: tela inicial, visor com zoom 2× sobre um QR code, foto salva na galeria e código lido com Copiar, Abrir link e Compartilhar](docs/imagens/telas.png)
 
@@ -37,6 +37,9 @@ A **v0.3.1** está em produção: leitor de QR/código de barras (v0.3.0), obtur
 
 O ScreenFakeCam é o primeiro sistema feito do zero com o framework [Big Bang](https://github.com/BrunodosSantosVaz/big-bang):
 da entrevista do produto à publicação, tudo passou pela esteira (testes de aceite travados, homologação e produção).
+
+A revisão documental do épico [#71](https://github.com/BrunodosSantosVaz/screenfakecam/issues/71) usa um
+[plano de validação](docs/validacao/71-documentacao-producao.md) contra o comportamento publicado, sem alterar o APK.
 
 ## Para que serve
 
@@ -66,7 +69,8 @@ qualquer app. Para QR code e código de barras, ele lê direto da imagem, sem pr
    `screenfakecam-vX.Y.Z-android.apk`.
 2. Abra o arquivo baixado. Na primeira vez, o Android pede para permitir a instalação de apps do navegador ou do
    gerenciador de arquivos: permita só para essa instalação.
-3. Para atualizar, instale a versão nova por cima: todas são assinadas com a mesma chave.
+3. Para atualizar, instale a versão nova por cima: as versões publicadas são assinadas com a mesma chave.
+   Uma versão anterior pode não instalar por cima da atual; regressões seguem o [procedimento de retorno](docs/operacao/voltar-versao.md).
 
 Conferir o download (opcional): cada Release traz o `SHA256SUMS-android.txt` e o atestado de origem do APK:
 
@@ -112,6 +116,9 @@ comando. Os comandos ficam em `bigbang.toml` (`[comandos]`):
 ./gradlew assembleDebug                # APK de desenvolvimento
 ```
 
+A cobertura mínima é **80% nas camadas de domínio e aplicação**. Os testes de tela locais usam Robolectric;
+homologar o APK exige instalar a candidata e registrar o Android e os cenários realmente executados.
+
 O APK de produção é assinado só na esteira, com os segredos `BB_ASSINATURA_*` do repositório; não há variáveis de
 ambiente de execução. Instruções para IAs em [`AGENTS.md`](AGENTS.md); pegadinhas em
 [`docs/memoria.md`](docs/memoria.md); processo de trabalho em [`.bigbang/processo/`](.bigbang/processo/).
@@ -122,12 +129,15 @@ ambiente de execução. Instruções para IAs em [`AGENTS.md`](AGENTS.md); pegad
   APK assinado, o `SHA256SUMS-android.txt` e o atestado de origem: são os mesmos bytes que foram homologados.
 - **Homologação:** as pre-releases `vX.Y.Z-rc.N` são candidatas para teste; não instale no uso do dia a dia.
 - O que mudou em cada versão: [`CHANGELOG.md`](CHANGELOG.md). Versões em [SemVer](https://semver.org/lang/pt-BR/).
+- Para quem mantém o projeto: [runbooks de entrega, retorno, assinatura e incidente](docs/operacao/README.md).
 
 ## Segurança e privacidade
 
-- O app **não pede permissão de internet**: nada sai do celular. Sem conta, sem analytics, sem anúncios.
-- Lê só a imagem que você escolhe no seletor do Android; não guarda cópia nem histórico. O que sai do app é a foto
-  salva a seu pedido.
+- O app **não pede permissão de internet**. Sem conta, sem analytics, sem anúncios. **Compartilhar** envia a foto
+  ou o texto ao app que você escolher; **Abrir link** entrega o endereço ao navegador, que pode usar internet.
+- Lê só a imagem que você escolhe no seletor do Android; mantém a imagem decodificada e o resultado em memória,
+  sem histórico persistente. A foto nova salva a seu pedido fica na galeria até você a remover.
+- Retenção, backup e ações externas: [inventário de dados locais](docs/dados/inventario.md).
 - Links lidos de QR só abrem com o seu toque, no seu navegador, e só `http://`/`https://`. Confira o endereço:
   um QR pode levar a um site enganoso.
 - Encontrou uma falha de segurança? Siga a [política de segurança](SECURITY.md): relato privado, nunca numa issue
@@ -143,6 +153,7 @@ ambiente de execução. Instruções para IAs em [`AGENTS.md`](AGENTS.md); pegad
   preservar todos os pixels do arquivo original.
 - A correção do teto de resolução está no [bug #81](https://github.com/BrunodosSantosVaz/screenfakecam/issues/81);
   só uma Release posterior à v0.3.1 entrega essa correção ao usuário.
+- Em v0.3.1, o visor usa toque; a correção de teclado/D-pad está no [bug #70](https://github.com/BrunodosSantosVaz/screenfakecam/issues/70).
 - Sem versão para iPhone; sem edição além de zoom e enquadramento; sem vídeo.
 - No Android 8 e 9, salvar a foto pergunta onde guardar (o app não pede permissão de armazenamento).
 

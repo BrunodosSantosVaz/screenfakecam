@@ -3,7 +3,7 @@
 ## Instalar
 
 1. No celular Android (8.0 ou mais novo), abra a página de
-   [Releases](https://github.com/BrunodosSantosVaz/screenfakecam/releases) e baixe o arquivo
+   [Releases](https://github.com/BrunodosSantosVaz/screenfakecam/releases/latest) e baixe o arquivo
    `screenfakecam-vX.Y.Z-android.apk` da versão mais recente.
 2. Abra o arquivo baixado. Na primeira vez, o Android pede para permitir a instalação de apps do navegador ou do
    gerenciador de arquivos: permita só para essa instalação.
@@ -32,4 +32,6 @@
 3. Código pequeno ou longe na imagem: abra a imagem no visor (**Enquadrar no visor** ou **Escolher imagem**), dê zoom
    no código e toque em **Ler código** no topo do visor.
 
-O app não usa internet e não guarda cópia das imagens nem histórico de leituras.
+O app não usa internet nem mantém histórico persistente de imagens ou leituras. Fotos salvas ficam na galeria até
+você as remover. Compartilhar e Abrir link entregam o conteúdo ao app externo escolhido, que tem sua própria
+política de dados e pode usar internet. Consulte o [inventário de dados locais](../dados/inventario.md).
