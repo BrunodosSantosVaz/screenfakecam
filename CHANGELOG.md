@@ -5,6 +5,15 @@ Todas as mudanças relevantes deste sistema, no formato
 
 ## [Não publicado]
 
+### Corrigido
+
+- Documentação da resolução da imagem decodificada, redução de imagens grandes e cobertura mínima de 80% (#71).
+
+### Adicionado
+
+- Runbooks de entrega do APK, retorno de versão compatível, incidente e assinatura/custódia/recuperação/rotação;
+  inventário dos dados locais, compartilhamento e backup das fotos (#71).
+
 ## [0.3.1] - 2026-10-05
 
 ### Corrigido
