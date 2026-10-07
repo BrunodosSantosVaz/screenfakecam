@@ -10,6 +10,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
@@ -45,9 +46,37 @@ class AndroidPictureLoaderTest {
     fun downsamplesALargeImage() {
         val file = image("grande.png", 1600, 1200, Bitmap.CompressFormat.PNG)
         val picture = runBlocking { loader.load(Uri.fromFile(file).toString(), maxSide = 500) }
-        // the largest power-of-two reduction that keeps the long side >= maxSide: 1600 / 2 = 800
-        assertEquals(800, picture!!.width)
-        assertEquals(600, picture.height)
+        // RN-0004 caps the decoded long side; 1600 / 4 = 400 stays within maxSide = 500.
+        assertEquals(400, picture!!.width)
+        assertEquals(300, picture.height)
+    }
+
+    @Test
+    fun decodedImageNeverExceedsTwiceTheScreenSide() {
+        val screenSide = 2400
+        val limit = screenSide * 2
+        val file = image("wide.png", 10000, 800, Bitmap.CompressFormat.PNG)
+        val picture = runBlocking { loader.load(Uri.fromFile(file).toString(), maxSide = limit) }
+        assertNotNull(picture)
+        assertTrue("Decoded width ${picture!!.width} exceeds $limit", picture.width <= limit)
+        assertTrue(picture.height <= limit)
+    }
+
+    @Test
+    fun oddDimensionsStayWithinTheDecodeLimit() {
+        val file = image("odd.png", 1001, 801, Bitmap.CompressFormat.PNG)
+        val picture = runBlocking { loader.load(Uri.fromFile(file).toString(), maxSide = 500) }
+        assertNotNull(picture)
+        assertTrue("Decoded width ${picture!!.width} exceeds 500", picture.width <= 500)
+        assertTrue(picture.height <= 500)
+    }
+
+    @Test
+    fun anImageAtTheLimitKeepsItsResolution() {
+        val file = image("limit.png", 1000, 800, Bitmap.CompressFormat.PNG)
+        val picture = runBlocking { loader.load(Uri.fromFile(file).toString(), maxSide = 1000) }
+        assertEquals(1000, picture!!.width)
+        assertEquals(800, picture.height)
     }
 
     @Test

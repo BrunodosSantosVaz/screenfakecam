@@ -55,8 +55,8 @@ qualquer app. Para QR code e código de barras, ele lê direto da imagem, sem pr
 - **Teclado e D-pad:** com foco no visor (contorno âmbar), setas movem a imagem e **+ / -** mudam o zoom entre
   1×, 2× e 4×. **Tab** percorre os controles; os limites de zoom e de enquadramento continuam valendo.
 - **Obturador manual**: a foto recorta o que o visor mostra, na resolução da imagem decodificada. Imagens grandes
-  podem ser reduzidas ao carregar para limitar o uso de memória; o arquivo original não é alterado e nada é
-  disparado sozinho.
+  são reduzidas ao carregar: o lado maior decodificado fica no máximo no dobro do lado maior da tela, em pixels.
+  O arquivo original não é alterado e nada é disparado sozinho.
 - **Foto salva na galeria** (Pictures/ScreenFakeCam no Android 10 ou mais novo; no 8 e 9, onde você escolher), com
   **Compartilhar**, **Tirar outra** e o atalho **Última**.
 - **Leitor de QR code e código de barras** (13 formatos, entre eles QR, EAN-13, Code 128 e Data Matrix), pela tela
@@ -159,7 +159,10 @@ controlada do lock.
   ScreenFakeCam, e a partir do Android 11 só câmeras pré-instaladas recebem o pedido "tirar foto" de outro app
   ([ADR-0002](docs/decisoes/ADR-0002-sem-camera-para-outros-apps.md)). Use a foto salva na galeria.
 - Câmera virtual por root ou injeção está fora do escopo de propósito: serve para enganar verificações de presença.
-- A resolução salva parte da imagem decodificada: não há garantia de manter todos os pixels de um arquivo grande.
+- Imagens grandes podem perder resolução ao carregar; o recorte usa o bitmap decodificado, sem garantia de
+  preservar todos os pixels do arquivo original.
+- A correção do teto de resolução está no [bug #81](https://github.com/BrunodosSantosVaz/screenfakecam/issues/81);
+  só uma Release posterior à v0.3.1 entrega essa correção ao usuário.
 - Em v0.3.1, o visor usa toque; a correção de teclado/D-pad está no [bug #70](https://github.com/BrunodosSantosVaz/screenfakecam/issues/70).
 - Sem versão para iPhone; sem edição além de zoom e enquadramento; sem vídeo.
 - No Android 8 e 9, salvar a foto pergunta onde guardar (o app não pede permissão de armazenamento).

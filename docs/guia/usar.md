@@ -17,8 +17,8 @@
    Com teclado ou D-pad, use **Tab** para dar foco ao visor (contorno âmbar): as **setas** movem a imagem;
    **+ / -** passam pelos níveis 1×, 2× e 4×. Também funcionam **Shift + =** e as teclas do teclado numérico.
 3. Aperte o **obturador** (o círculo branco embaixo) para tirar a foto do que o visor mostra. A foto tem a
-   resolução da imagem decodificada, não a da tela. Imagens grandes podem ser reduzidas ao carregar para
-   limitar o uso de memória; o arquivo original escolhido nunca é alterado.
+   resolução da imagem decodificada, não a da tela. O lado maior decodificado é limitado ao dobro do lado
+   maior da tela, em pixels; arquivos grandes podem perder resolução ao carregar. O arquivo original nunca é alterado.
    - Android 10 ou mais novo: a foto vai para a galeria, na pasta **Pictures/ScreenFakeCam**.
    - Android 8 ou 9: o Android pergunta onde salvar (o app não pede permissão de armazenamento).
 4. Na tela **Foto salva**: **Compartilhar** abre a lista de apps do Android; **Tirar outra** volta ao visor. No visor,
