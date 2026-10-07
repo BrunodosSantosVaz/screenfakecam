@@ -7,6 +7,7 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performKeyInput
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.pressKey
@@ -52,6 +53,23 @@ class ViewfinderKeyboardTest {
     private fun press(key: Key) {
         compose.onNodeWithContentDescription(description).performKeyInput { pressKey(key) }
         compose.waitForIdle()
+    }
+
+    @Test
+    fun focusedZoomButtonDoesNotSendFramingShortcutsToTheViewfinder() {
+        show()
+        val initial = framing.value
+        val zoomButton = compose.onNodeWithText(context.getString(R.string.zoom_step, 2))
+        zoomButton.performSemanticsAction(SemanticsActions.RequestFocus) { it() }
+        zoomButton.performKeyInput { pressKey(Key.Plus) }
+        compose.waitForIdle()
+        assertEquals(initial, framing.value)
+        zoomButton.performKeyInput { pressKey(Key.Minus) }
+        compose.waitForIdle()
+        assertEquals(initial, framing.value)
+        zoomButton.performKeyInput { pressKey(Key.DirectionRight) }
+        compose.waitForIdle()
+        assertEquals(initial, framing.value)
     }
 
     @Test
