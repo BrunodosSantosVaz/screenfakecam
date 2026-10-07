@@ -7,6 +7,17 @@ plugins {
     alias(libs.plugins.ktlint)
 }
 
+// The candidate SBOM scans a fresh checkout: keep the resolved release graph in source, not only in a build cache.
+dependencyLocking {
+    lockMode = LockMode.STRICT
+}
+
+configurations.configureEach {
+    if (name == "releaseRuntimeClasspath" || name == "releaseCompileClasspath") {
+        resolutionStrategy.activateDependencyLocking()
+    }
+}
+
 // version.properties is the single source of the version (bigbang.toml entrega.arquivo_versao).
 val appVersion: String =
     Properties()
