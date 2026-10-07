@@ -43,3 +43,7 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
   versionCode; preferir correção nova com mesma chave. Backup do keystore não foi comprovado pelo acesso público.
 - Offline significa ausência de permissão de internet no app; Compartilhar/Abrir link/área de transferência passam
   conteúdo ao Android/outro app. Fotos salvas são externas e dependem da política da galeria/provedor.
+
+- Conferência documental #75 em docs/validacao/71-documentacao-producao.md separa entrega documental dos bugs
+  ainda não publicados. A próxima release deve atualizar versão/limitações do README e registrar ensaio Android
+  com hash exato; não transportar evidência de APK antigo para uma candidata nova.
