@@ -52,6 +52,8 @@ qualquer app. Para QR code e código de barras, ele lê direto da imagem, sem pr
 
 - **Visor parado numa imagem do celular**, escolhida pelo seletor de fotos do Android (sem acesso amplo à galeria).
 - **Zoom de 1× a 4×** (botões ou dois dedos) e **enquadramento** arrastando; o enquadramento nunca sai da imagem.
+- **Teclado e D-pad:** com foco no visor (contorno âmbar), setas movem a imagem e **+ / -** mudam o zoom entre
+  1×, 2× e 4×. **Tab** percorre os controles; os limites de zoom e de enquadramento continuam valendo.
 - **Obturador manual**: a foto recorta o que o visor mostra, na resolução da imagem decodificada. Imagens grandes
   podem ser reduzidas ao carregar para limitar o uso de memória; o arquivo original não é alterado e nada é
   disparado sozinho.
@@ -82,7 +84,8 @@ gh attestation verify screenfakecam-vX.Y.Z-android.apk --repo BrunodosSantosVaz/
 ## Como usar
 
 1. **Escolher imagem** → a imagem aparece parada no visor.
-2. Use **1×, 2×, 4×** ou dois dedos para o zoom e arraste para enquadrar.
+2. Use **1×, 2×, 4×** ou dois dedos para o zoom e arraste para enquadrar. Atalhos do visor só atuam quando ele
+   está focado; focar os botões de zoom preserva a navegação de teclado.
 3. Aperte o **obturador** (o círculo branco). A tela **Foto salva** mostra a foto e oferece **Compartilhar** ou
    **Tirar outra**.
 4. Para um código: **Ler QR ou código de barras** na tela inicial, ou **Ler código** no visor depois de dar zoom.

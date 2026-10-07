@@ -14,6 +14,8 @@
 1. Toque em **Escolher imagem** e escolha uma imagem no seletor de fotos do Android.
 2. A imagem aparece parada no visor. Use **1×, 2× e 4×** ou dois dedos para o zoom (até 4×) e arraste para
    enquadrar; o enquadramento nunca sai da imagem.
+   Com teclado ou D-pad, use **Tab** para dar foco ao visor (contorno âmbar): as **setas** movem a imagem;
+   **+ / -** passam pelos níveis 1×, 2× e 4×. Também funcionam **Shift + =** e as teclas do teclado numérico.
 3. Aperte o **obturador** (o círculo branco embaixo) para tirar a foto do que o visor mostra. A foto tem a
    resolução da imagem decodificada, não a da tela. Imagens grandes podem ser reduzidas ao carregar para
    limitar o uso de memória; o arquivo original escolhido nunca é alterado.
