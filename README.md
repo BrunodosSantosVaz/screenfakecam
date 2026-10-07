@@ -69,7 +69,8 @@ qualquer app. Para QR code e código de barras, ele lê direto da imagem, sem pr
    `screenfakecam-vX.Y.Z-android.apk`.
 2. Abra o arquivo baixado. Na primeira vez, o Android pede para permitir a instalação de apps do navegador ou do
    gerenciador de arquivos: permita só para essa instalação.
-3. Para atualizar, instale a versão nova por cima: todas são assinadas com a mesma chave.
+3. Para atualizar, instale a versão nova por cima: as versões publicadas são assinadas com a mesma chave.
+   Uma versão anterior pode não instalar por cima da atual; regressões seguem o [procedimento de retorno](docs/operacao/voltar-versao.md).
 
 Conferir o download (opcional): cada Release traz o `SHA256SUMS-android.txt` e o atestado de origem do APK:
 
