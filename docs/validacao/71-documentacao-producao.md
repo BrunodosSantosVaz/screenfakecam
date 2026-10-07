@@ -77,3 +77,9 @@ nem se repetiu suíte local de runtime para comportamento inalterado.
 Pendências fora deste épico: correções #70 (teclado), #72 (SBOM) e teto numérico de decodificação devem percorrer
 regressão→correção→revisão→candidata agrupada→homologação real→produção. Runbooks da entrega futura exigem registrar
 Android/hash/cenários reais; a evidência histórica até v0.3.1 é emulador Android 15, sem aparelho físico demonstrado.
+
+## Atualização posterior
+
+O histórico acima descreve a conferência documental anterior à correção dos bugs. As pendências #70/#72/#81
+foram entregues na v0.3.2. Seus recibos e o ensaio real estão em [produção v0.3.2](032-producao.md);
+este registro de #71 conserva a versão e a evidência daquela data.

@@ -31,7 +31,8 @@ apksigner verify --verbose --print-certs screenfakecam-vX.Y.Z-android.apk
 link do run, SHA256 do APK, certificado público e resultado do atestado. A assinatura autentica a chave; o atestado
 liga os bytes ao build. Ambos precisam ser conferidos. Compare o certificado com o de uma versão instalada válida
 (ver [assinatura](assinatura.md)). Examine o SBOM: precisa representar dependências Android reais; a lacuna da
-v0.3.1 é acompanhada no [bug #72](https://github.com/BrunodosSantosVaz/screenfakecam/issues/72).
+v0.3.1 foi corrigida pelo [bug #72](https://github.com/BrunodosSantosVaz/screenfakecam/issues/72) na v0.3.2.
+O [recibo atual](../validacao/032-producao.md) confere 303 componentes/101 Maven e os 100 módulos do lock de release.
 
 ## Homologar os mesmos bytes
 
@@ -39,7 +40,8 @@ Instale o APK conferido por cima da versão estável em um dispositivo ou emulad
 pelos seus critérios: seleção de imagem, zoom/enquadramento, obturador e galeria, leitura de códigos, ações de
 resultado, Voltar e cenários da correção. Registre Android/API, tipo de dispositivo (emulador ou físico), versão/hash,
 cenários e resultados. Se só houve Robolectric, registre testes locais; não declare homologação Android. O histórico
-até v0.3.1 registra emulador Android 15, não validação em aparelho físico nem cobertura de todos os Android 8+.
+até v0.3.1 registra emulador Android 15. O [ensaio da v0.3.2](../validacao/032-producao.md) identifica o
+APK/hash e os cenários realmente executados, também em Android 15 emulado; não valida aparelho físico nem todos os Android 8+.
 
 Registre a decisão efetivamente dada pelo dono via `bb decisao homologado N --frase "palavras do dono"`, para cada
 épico/bug da candidata; rejeição registra motivo e gera correção com nova rc. Não invente decisão ou cenário testado.

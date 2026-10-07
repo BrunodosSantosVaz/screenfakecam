@@ -18,8 +18,9 @@ banco e sem login (perfil compilado): os itens de backend e de API não se aplic
 ## Procedimentos e evidências
 
 As verificações acima são resolvidas pelo portão de cada entrega, não marcadas como executadas por esta tarefa de
-documentação. O épico #71 é sem-release e não produz APK; a próxima candidata de correção deve preencher evidências
-próprias de hash/assinatura/atestado, instalação e cenários efetivamente executados.
+documentação. O épico #71 foi sem-release e não produziu APK. A candidata dos bugs #70/#72/#81 e a produção
+v0.3.2 têm [recibos próprios](../validacao/032-producao.md) de hash/assinatura/atestado, instalação, cenários
+efetivamente executados e promoção dos mesmos bytes. O épico #84 só consolida documentos, sem novo APK.
 
 - [Entrega compilada](entrega.md): integra PRs revisados e CI no SHA exato; verifica APK/checksum/SBOM/atestado,
   homologa a candidata e promove os mesmos bytes sem recompilar.

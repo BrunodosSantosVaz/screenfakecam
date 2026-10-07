@@ -13,6 +13,7 @@ que alguém instalou e usou um APK: cada registro de homologação deve indicar 
 | Imagens e fotos locais, backup e exclusão | [Inventário de dados](../dados/inventario.md) |
 | Portões antes da produção | [Checklist de produção](checklist-producao.md) |
 
-Os procedimentos abaixo foram confrontados com a configuração e a v0.3.1 publicada. A conferência documental não
-executa recuperação de chave, retorno em aparelho ou homologação nova. Registre cada exercício futuro com data,
+Os procedimentos foram confrontados inicialmente com a v0.3.1. A produção atual v0.3.2 possui
+[recibo próprio](../validacao/032-producao.md) de candidata/CI/assinatura/SBOM, homologação real no emulador e
+promoção dos mesmos bytes. A conferência documental não executa recuperação de chave nem retorno em aparelho. Registre cada exercício futuro com data,
 Android, versão/hash e resultado, sem imagens pessoais nem valores de segredo.
