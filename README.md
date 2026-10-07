@@ -49,6 +49,8 @@ qualquer app. Para QR code e código de barras, ele lê direto da imagem, sem pr
 
 - **Visor parado numa imagem do celular**, escolhida pelo seletor de fotos do Android (sem acesso amplo à galeria).
 - **Zoom de 1× a 4×** (botões ou dois dedos) e **enquadramento** arrastando; o enquadramento nunca sai da imagem.
+- **Teclado e D-pad:** com foco no visor (contorno âmbar), setas movem a imagem e **+ / -** mudam o zoom entre
+  1×, 2× e 4×. **Tab** percorre os controles; os limites de zoom e de enquadramento continuam valendo.
 - **Obturador manual**: a foto é exatamente o que o visor mostra, na resolução da imagem original, que nunca é
   alterada; nada é disparado sozinho.
 - **Foto salva na galeria** (Pictures/ScreenFakeCam no Android 10 ou mais novo; no 8 e 9, onde você escolher), com

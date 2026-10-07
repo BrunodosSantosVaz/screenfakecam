@@ -60,11 +60,11 @@ class ViewfinderKeyboardTest {
         press(Key.DirectionLeft)
         assertTrue(framing.value.offsetX < 0f)
         press(Key.DirectionRight)
-        assertEquals(0f, framing.value.offsetX)
+        assertEquals(0f, framing.value.offsetX, 0f)
         press(Key.DirectionUp)
         assertTrue(framing.value.offsetY < 0f)
         press(Key.DirectionDown)
-        assertEquals(0f, framing.value.offsetY)
+        assertEquals(0f, framing.value.offsetY, 0f)
     }
 
     @Test
@@ -102,8 +102,8 @@ class ViewfinderKeyboardTest {
         show()
         press(Key.DirectionLeft)
         press(Key.DirectionUp)
-        assertEquals(0f, framing.value.offsetX)
-        assertEquals(0f, framing.value.offsetY)
+        assertEquals(0f, framing.value.offsetX, 0f)
+        assertEquals(0f, framing.value.offsetY, 0f)
     }
 
     @Test

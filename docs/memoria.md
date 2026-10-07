@@ -11,6 +11,10 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 
 ## Build e testes
 
+- Teclado/D-pad do visor (#70): foco no próprio visor, com contorno âmbar; só KeyDown das setas e +/- muda o
+  enquadramento. Não capturar Tab/Voltar nem Ctrl/Alt/Meta. Os testes de UI usam createComposeRule v2 e injeção
+  de teclas; não confundir esses testes Robolectric com homologação do APK em aparelho físico.
+
 - `compileSdk = 37`: as bibliotecas do Compose 1.12 (BOM 2026.09) exigem compilar contra a API 37; `targetSdk` segue 36.
 - Robolectric roda na imagem do **Android 35** (`app/src/test/resources/robolectric.properties`): na 36 ele falha com
   "Failed to interact with raw FileDescriptor internals" no JDK 21. Os testes também precisam de

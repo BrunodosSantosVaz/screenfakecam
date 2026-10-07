@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,14 +27,28 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEvent
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.isAltPressed
+import androidx.compose.ui.input.key.isCtrlPressed
+import androidx.compose.ui.input.key.isMetaPressed
+import androidx.compose.ui.input.key.isShiftPressed
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
@@ -47,8 +62,9 @@ import io.github.brunodossantosvaz.screenfakecam.domain.Framing
 import io.github.brunodossantosvaz.screenfakecam.ui.theme.Tokens
 
 private val ZOOM_STEPS = listOf(1f, 2f, 4f)
+private const val KEYBOARD_PAN_FRACTION = 0.05f
 
-/** Viewfinder: the chosen image, still, with zoom and drag (RN-0001, RN-0002). The shutter comes in a later epic. */
+/** Viewfinder: the chosen image, still, with zoom and drag (RN-0001, RN-0002), manual shutter and code reader. */
 @Composable
 fun ViewfinderScreen(
     image: ImageBitmap,
@@ -93,12 +109,17 @@ fun ViewfinderScreen(
             }
         }
         val description = stringResource(R.string.viewfinder_description)
+        var focused by remember { mutableStateOf(false) }
         Box(
             Modifier
                 .weight(1f)
                 .fillMaxWidth()
                 .clipToBounds()
                 .onSizeChanged { onViewSize(it.width, it.height) }
+                .onFocusChanged { focused = it.isFocused }
+                .onKeyEvent { handleViewfinderKey(it, framing, onZoomTo, onDrag) }
+                .focusable()
+                .then(if (focused) Modifier.border(Tokens.space1, Tokens.primary) else Modifier)
                 .pointerInput(Unit) {
                     detectTransformGestures { _, pan: Offset, zoom, _ ->
                         if (zoom != 1f) onZoomBy(zoom)
@@ -161,7 +182,50 @@ fun ViewfinderScreen(
     }
 }
 
-/** The shutter (DESIGN.md): a white 76 dp circle with a ring. The photo is only taken here (RN-0005). */
+/** Keep key handling on the focused image; Tab, Back and unrelated shortcuts remain available to Android. */
+internal fun handleViewfinderKey(
+    event: KeyEvent,
+    framing: Framing?,
+    onZoomTo: (Float) -> Unit,
+    onDrag: (Float, Float) -> Unit,
+): Boolean {
+    if (framing == null || !event.isUnmodifiedKeyDown()) return false
+    val pan = keyboardPan(event.key, framing)
+    if (pan != null) {
+        onDrag(pan.x, pan.y)
+    } else {
+        val zoom = keyboardZoom(event, framing.zoom) ?: return false
+        onZoomTo(zoom)
+    }
+    return true
+}
+
+private fun KeyEvent.isUnmodifiedKeyDown(): Boolean =
+    type == KeyEventType.KeyDown && !isCtrlPressed && !isAltPressed && !isMetaPressed
+
+private fun keyboardPan(
+    key: Key,
+    framing: Framing,
+): Offset? =
+    when (key) {
+        Key.DirectionLeft -> Offset(-framing.viewWidth * KEYBOARD_PAN_FRACTION, 0f)
+        Key.DirectionRight -> Offset(framing.viewWidth * KEYBOARD_PAN_FRACTION, 0f)
+        Key.DirectionUp -> Offset(0f, -framing.viewHeight * KEYBOARD_PAN_FRACTION)
+        Key.DirectionDown -> Offset(0f, framing.viewHeight * KEYBOARD_PAN_FRACTION)
+        else -> null
+    }
+
+private fun keyboardZoom(
+    event: KeyEvent,
+    zoom: Float,
+): Float? =
+    when (event.key) {
+        Key.Plus, Key.NumPadAdd -> ZOOM_STEPS.firstOrNull { it > zoom } ?: ZOOM_STEPS.last()
+        Key.Equals -> if (event.isShiftPressed) ZOOM_STEPS.firstOrNull { it > zoom } ?: ZOOM_STEPS.last() else null
+        Key.Minus, Key.NumPadSubtract -> ZOOM_STEPS.lastOrNull { it < zoom } ?: ZOOM_STEPS.first()
+        else -> null
+    }
+
 @Composable
 private fun ShutterButton(
     onShutter: () -> Unit,
