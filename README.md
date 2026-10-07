@@ -30,7 +30,7 @@ aperta o obturador quando quiser. O app também lê **QR code e código de barra
 
 ## Estado atual
 
-A **v0.3.1** está em produção: leitor de QR/código de barras (v0.3.0), obturador com foto salva na galeria
+A **v0.3.2** está em produção: leitor de QR/código de barras (v0.3.0), obturador com foto salva na galeria
 (v0.2.0), rótulos de leitura ajustados e ícone próprio. A versão mais recente está nas
 [Releases](https://github.com/BrunodosSantosVaz/screenfakecam/releases/latest), e o que vem a seguir está nas
 [issues](https://github.com/BrunodosSantosVaz/screenfakecam/issues).
@@ -40,6 +40,9 @@ da entrevista do produto à publicação, tudo passou pela esteira (testes de ac
 
 A revisão documental do épico [#71](https://github.com/BrunodosSantosVaz/screenfakecam/issues/71) usa um
 [plano de validação](docs/validacao/71-documentacao-producao.md) contra o comportamento publicado, sem alterar o APK.
+
+A consolidação dos recibos da v0.3.2 segue o épico [#84](https://github.com/BrunodosSantosVaz/screenfakecam/issues/84)
+e seu [plano de validação](docs/validacao/84-producao-032.md); os limites e a evidência atual serão conferidos por leitura independente.
 
 ## Para que serve
 

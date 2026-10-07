@@ -62,3 +62,10 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 - Conferência documental #75 em docs/validacao/71-documentacao-producao.md separa entrega documental dos bugs
   ainda não publicados. A próxima release deve atualizar versão/limitações do README e registrar ensaio Android
   com hash exato; não transportar evidência de APK antigo para uma candidata nova.
+
+## Recibos da produção v0.3.2 (#84)
+
+- Plano #85 anterior à atualização #86 e à conferência #87, em docs/validacao/84-producao-032.md.
+  São três PRs documentais sem novo APK, preservando 16 aceites e sete RNs. Produção v0.3.2 já publicada;
+  o plano não declara concluída a atualização documental. Não criar testes que espelham textos nem
+  reutilizar homologação do APK antigo para os bytes atuais.
