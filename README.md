@@ -79,7 +79,8 @@ gh attestation verify screenfakecam-vX.Y.Z-android.apk --repo BrunodosSantosVaz/
 ## Como usar
 
 1. **Escolher imagem** → a imagem aparece parada no visor.
-2. Use **1×, 2×, 4×** ou dois dedos para o zoom e arraste para enquadrar.
+2. Use **1×, 2×, 4×** ou dois dedos para o zoom e arraste para enquadrar. Atalhos do visor só atuam quando ele
+   está focado; focar os botões de zoom preserva a navegação de teclado.
 3. Aperte o **obturador** (o círculo branco). A tela **Foto salva** mostra a foto e oferece **Compartilhar** ou
    **Tirar outra**.
 4. Para um código: **Ler QR ou código de barras** na tela inicial, ou **Ler código** no visor depois de dar zoom.

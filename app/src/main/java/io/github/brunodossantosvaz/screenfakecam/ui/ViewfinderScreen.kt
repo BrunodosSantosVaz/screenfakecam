@@ -117,7 +117,7 @@ fun ViewfinderScreen(
                 .clipToBounds()
                 .onSizeChanged { onViewSize(it.width, it.height) }
                 .onFocusChanged { focused = it.isFocused }
-                .onKeyEvent { handleViewfinderKey(it, framing, onZoomTo, onDrag) }
+                .onKeyEvent { focused && handleViewfinderKey(it, framing, onZoomTo, onDrag) }
                 .focusable()
                 .then(if (focused) Modifier.border(Tokens.space1, Tokens.primary) else Modifier)
                 .pointerInput(Unit) {
