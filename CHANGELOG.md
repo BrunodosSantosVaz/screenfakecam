@@ -5,14 +5,19 @@ Todas as mudanças relevantes deste sistema, no formato
 
 ## [Não publicado]
 
-### Corrigido
-
-- Documentação da resolução da imagem decodificada, redução de imagens grandes e cobertura mínima de 80% (#71).
+## [0.3.2] - 2026-10-07
 
 ### Adicionado
 
 - Runbooks de entrega do APK, retorno de versão compatível, incidente e assinatura/custódia/recuperação/rotação;
   inventário dos dados locais, compartilhamento e backup das fotos (#71).
+
+### Corrigido
+
+- Teclado e D-pad para enquadrar e ajustar o zoom do visor (#77)
+- Incluir dependências Android no SBOM da candidata (#78)
+- Limitar imagem decodificada ao teto de resolução da tela (#82)
+- Documentação da resolução da imagem decodificada, redução de imagens grandes e cobertura mínima de 80% (#71).
 
 ## [0.3.1] - 2026-10-05
 
