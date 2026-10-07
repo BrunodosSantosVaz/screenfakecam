@@ -66,7 +66,7 @@ C4Container
 
 ## Cobertura mínima
 
-{{testes.cobertura_minima}}% nas camadas de domínio e aplicação.
+80% nas camadas de domínio e aplicação, conforme `[testes].cobertura_minima` em `bigbang.toml` e a configuração do Kover.
 
 ## Configuração da esteira
 
