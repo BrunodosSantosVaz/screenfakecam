@@ -38,6 +38,9 @@ foto salva na galeria (v0.2.0). A versão mais recente está nas
 O ScreenFakeCam é o primeiro sistema feito do zero com o framework [Big Bang](https://github.com/BrunodosSantosVaz/big-bang):
 da entrevista do produto à publicação, tudo passou pela esteira (testes de aceite travados, homologação e produção).
 
+A revisão documental do épico [#71](https://github.com/BrunodosSantosVaz/screenfakecam/issues/71) usa um
+[plano de validação](docs/validacao/71-documentacao-producao.md) contra o comportamento publicado, sem alterar o APK.
+
 ## Para que serve
 
 Às vezes a imagem que você precisa entregar já está no celular (um print, um documento escaneado, um QR code
