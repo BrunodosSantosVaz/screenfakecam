@@ -3,8 +3,13 @@ package io.github.brunodossantosvaz.screenfakecam.ui
 import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.input.InputMode
+import androidx.compose.ui.input.InputModeManager
 import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.platform.LocalInputModeManager
 import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.test.assertIsFocused
+import androidx.compose.ui.test.assertIsNotFocused
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -34,7 +39,9 @@ class ViewfinderKeyboardTest {
     private val framing = mutableStateOf(Framing(1000, 800, 500, 400).withZoom(2f))
 
     private fun show() {
+        lateinit var inputMode: InputModeManager
         compose.setContent {
+            inputMode = LocalInputModeManager.current
             ScreenFakeCamTheme {
                 ViewfinderScreen(
                     image = ImageBitmap(1000, 800),
@@ -47,6 +54,7 @@ class ViewfinderKeyboardTest {
                 )
             }
         }
+        compose.runOnIdle { inputMode.requestInputMode(InputMode.Keyboard) }
         compose.onNodeWithContentDescription(description).performSemanticsAction(SemanticsActions.RequestFocus) { it() }
     }
 
@@ -61,6 +69,8 @@ class ViewfinderKeyboardTest {
         val initial = framing.value
         val zoomButton = compose.onNodeWithText(context.getString(R.string.zoom_step, 2))
         zoomButton.performSemanticsAction(SemanticsActions.RequestFocus) { it() }
+        zoomButton.assertIsFocused()
+        compose.onNodeWithContentDescription(description).assertIsNotFocused()
         zoomButton.performKeyInput { pressKey(Key.Plus) }
         compose.waitForIdle()
         assertEquals(initial, framing.value)
