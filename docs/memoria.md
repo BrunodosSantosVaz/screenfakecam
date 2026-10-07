@@ -52,16 +52,16 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 
 ## Operação e documentação (#71)
 
-- README/guia descrevem resolução do bitmap decodificado, com redução possível de imagens grandes; não prometer
-  resolução original ou teto exato ainda não demonstrado. RN-0004 e os aceites permanecem intactos.
+- Na conferência #71, antes da v0.3.2, README/guia descreveram redução do bitmap decodificado sem prometer
+  resolução original ou teto ainda não comprovado. #81 corrigiu o teto na v0.3.2; RN-0004 e aceites ficaram intactos.
 - Runbooks em docs/operacao/README.md: APK não tem rollback de servidor. Downgrade por cima é bloqueado por
   versionCode; preferir correção nova com mesma chave. Backup do keystore não foi comprovado pelo acesso público.
 - Offline significa ausência de permissão de internet no app; Compartilhar/Abrir link/área de transferência passam
   conteúdo ao Android/outro app. Fotos salvas são externas e dependem da política da galeria/provedor.
 
 - Conferência documental #75 em docs/validacao/71-documentacao-producao.md separa entrega documental dos bugs
-  ainda não publicados. A próxima release deve atualizar versão/limitações do README e registrar ensaio Android
-  com hash exato; não transportar evidência de APK antigo para uma candidata nova.
+  ainda não publicados naquela data. Essa etapa foi cumprida pela v0.3.2 e pelos recibos em
+  docs/validacao/032-producao.md; não transportar evidência de APK antigo para uma candidata nova.
 
 ## Recibos da produção v0.3.2 (#84)
 
@@ -69,3 +69,10 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
   São três PRs documentais sem novo APK, preservando 16 aceites e sete RNs. Produção v0.3.2 já publicada;
   o plano não declara concluída a atualização documental. Não criar testes que espelham textos nem
   reutilizar homologação do APK antigo para os bytes atuais.
+
+- Produção v0.3.2: APK SHA256 29d89a99d2839185138259dafc688ee85fbcb087a6a788a8ebc8612dd3a43fca,
+  os mesmos bytes da rc.1. Fonte compilada 04ccad4..., publicação 37587716471/main 93ad178...,
+  workflow disparado no SHA 321c24a...: esses SHAs têm papéis diferentes. Recibo completo em docs/validacao/032-producao.md.
+- Homologação real feita pelo agente autorizado em Android 15/API 35 emulado, sem alegar aparelho físico ou teste
+  manual do dono. Screenshot real em docs/imagens/keyboard-zoom-032.png. Bugs #70/#72/#81 publicados e fechados;
+  SBOM 303/101 Maven contém todos os 100 módulos do lock. Ensaios de keystore/downgrade/TalkBack integral não realizados.

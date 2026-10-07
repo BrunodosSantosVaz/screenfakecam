@@ -1,6 +1,6 @@
 # Inventário dos dados locais
 
-ScreenFakeCam v0.3.1, aplicativo Android sem servidor, conta, analytics, anúncios ou permissão de internet.
+ScreenFakeCam v0.3.2, aplicativo Android sem servidor, conta, analytics, anúncios ou permissão de internet.
 Não há banco de dados nem envio automático. A imagem pode conter dados pessoais; escolha e compartilhamento são
 comandos do usuário. Este inventário descreve o fluxo técnico atual, sem declarar uma base legal para coleta futura.
 

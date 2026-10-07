@@ -5,6 +5,11 @@ Todas as mudanças relevantes deste sistema, no formato
 
 ## [Não publicado]
 
+### Corrigido
+
+- Documentação atual da produção v0.3.2, com recibos da CI/candidata/assinatura/SBOM/homologação e promoção
+  dos mesmos bytes; screenshot real e limites do ensaio Android emulado (#84). Sem nova versão do APK.
+
 ## [0.3.2] - 2026-10-07
 
 ### Adicionado
