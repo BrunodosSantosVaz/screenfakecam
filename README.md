@@ -126,6 +126,13 @@ O APK de produção é assinado só na esteira, com os segredos `BB_ASSINATURA_*
 ambiente de execução. Instruções para IAs em [`AGENTS.md`](AGENTS.md); pegadinhas em
 [`docs/memoria.md`](docs/memoria.md); processo de trabalho em [`.bigbang/processo/`](.bigbang/processo/).
 
+As dependências da variante de produção estão fixadas em `app/gradle.lockfile` (compilação e execução da release).
+O build recusa um lock ausente ou incompatível; o scanner da candidata lê esse arquivo do checkout para incluir
+dependências Android diretas/transitivas com versões e identificadores Maven no SBOM, sem depender do cache do
+build. Esse inventário também contém ferramentas da esteira; o lock não fornece todas as licenças nem relações
+entre dependências. A [pesquisa do SBOM](docs/pesquisa/2026-10-07-sbom-gradle.md) explica a validação e a atualização
+controlada do lock.
+
 ## Versões e releases
 
 - **Produção:** cada [Release](https://github.com/BrunodosSantosVaz/screenfakecam/releases/latest) `vX.Y.Z` traz o
