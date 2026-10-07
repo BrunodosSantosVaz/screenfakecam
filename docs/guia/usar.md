@@ -16,6 +16,7 @@
    enquadrar; o enquadramento nunca sai da imagem.
    Com teclado ou D-pad, use **Tab** para dar foco ao visor (contorno âmbar): as **setas** movem a imagem;
    **+ / -** passam pelos níveis 1×, 2× e 4×. Também funcionam **Shift + =** e as teclas do teclado numérico.
+   Com botão ou outro controle focado, essas teclas não mudam o enquadramento do visor.
 3. Aperte o **obturador** (o círculo branco embaixo) para tirar a foto do que o visor mostra. A foto tem a
    resolução da imagem decodificada, não a da tela. O lado maior decodificado é limitado ao dobro do lado
    maior da tela, em pixels; arquivos grandes podem perder resolução ao carregar. O arquivo original nunca é alterado.
@@ -37,3 +38,6 @@
 O app não usa internet nem mantém histórico persistente de imagens ou leituras. Fotos salvas ficam na galeria até
 você as remover. Compartilhar e Abrir link entregam o conteúdo ao app externo escolhido, que tem sua própria
 política de dados e pode usar internet. Consulte o [inventário de dados locais](../dados/inventario.md).
+
+A produção v0.3.2 e o ensaio real dos seus bytes estão nos [recibos de entrega](../validacao/032-producao.md),
+com screenshot do visor focado e limites do ambiente Android 15 emulado.
