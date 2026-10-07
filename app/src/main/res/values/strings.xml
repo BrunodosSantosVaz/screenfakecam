@@ -6,7 +6,7 @@
     <string name="choose_image">Escolher imagem</string>
     <string name="back">Voltar</string>
     <string name="viewfinder_title">Visor</string>
-    <string name="viewfinder_description">Visor. Arraste para enquadrar e use dois dedos ou os botões para o zoom.</string>
+    <string name="viewfinder_description">Visor. Arraste para enquadrar e use dois dedos ou os botões para o zoom. Com teclado, use as setas para enquadrar e mais ou menos para o zoom.</string>
     <string name="zoom_step">%1$d×</string>
     <string name="loading_image">Abrindo a imagem…</string>
     <string name="image_error">Não foi possível abrir essa imagem. Escolha outra.</string>

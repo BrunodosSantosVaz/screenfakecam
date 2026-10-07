@@ -52,9 +52,11 @@ qualquer app. Para QR code e código de barras, ele lê direto da imagem, sem pr
 
 - **Visor parado numa imagem do celular**, escolhida pelo seletor de fotos do Android (sem acesso amplo à galeria).
 - **Zoom de 1× a 4×** (botões ou dois dedos) e **enquadramento** arrastando; o enquadramento nunca sai da imagem.
+- **Teclado e D-pad:** com foco no visor (contorno âmbar), setas movem a imagem e **+ / -** mudam o zoom entre
+  1×, 2× e 4×. **Tab** percorre os controles; os limites de zoom e de enquadramento continuam valendo.
 - **Obturador manual**: a foto recorta o que o visor mostra, na resolução da imagem decodificada. Imagens grandes
-  podem ser reduzidas ao carregar para limitar o uso de memória; o arquivo original não é alterado e nada é
-  disparado sozinho.
+  são reduzidas ao carregar: o lado maior decodificado fica no máximo no dobro do lado maior da tela, em pixels.
+  O arquivo original não é alterado e nada é disparado sozinho.
 - **Foto salva na galeria** (Pictures/ScreenFakeCam no Android 10 ou mais novo; no 8 e 9, onde você escolher), com
   **Compartilhar**, **Tirar outra** e o atalho **Última**.
 - **Leitor de QR code e código de barras** (13 formatos, entre eles QR, EAN-13, Code 128 e Data Matrix), pela tela
@@ -82,7 +84,8 @@ gh attestation verify screenfakecam-vX.Y.Z-android.apk --repo BrunodosSantosVaz/
 ## Como usar
 
 1. **Escolher imagem** → a imagem aparece parada no visor.
-2. Use **1×, 2×, 4×** ou dois dedos para o zoom e arraste para enquadrar.
+2. Use **1×, 2×, 4×** ou dois dedos para o zoom e arraste para enquadrar. Atalhos do visor só atuam quando ele
+   está focado; focar os botões de zoom preserva a navegação de teclado.
 3. Aperte o **obturador** (o círculo branco). A tela **Foto salva** mostra a foto e oferece **Compartilhar** ou
    **Tirar outra**.
 4. Para um código: **Ler QR ou código de barras** na tela inicial, ou **Ler código** no visor depois de dar zoom.
@@ -123,6 +126,13 @@ O APK de produção é assinado só na esteira, com os segredos `BB_ASSINATURA_*
 ambiente de execução. Instruções para IAs em [`AGENTS.md`](AGENTS.md); pegadinhas em
 [`docs/memoria.md`](docs/memoria.md); processo de trabalho em [`.bigbang/processo/`](.bigbang/processo/).
 
+As dependências da variante de produção estão fixadas em `app/gradle.lockfile` (compilação e execução da release).
+O build recusa um lock ausente ou incompatível; o scanner da candidata lê esse arquivo do checkout para incluir
+dependências Android diretas/transitivas com versões e identificadores Maven no SBOM, sem depender do cache do
+build. Esse inventário também contém ferramentas da esteira; o lock não fornece todas as licenças nem relações
+entre dependências. A [pesquisa do SBOM](docs/pesquisa/2026-10-07-sbom-gradle.md) explica a validação e a atualização
+controlada do lock.
+
 ## Versões e releases
 
 - **Produção:** cada [Release](https://github.com/BrunodosSantosVaz/screenfakecam/releases/latest) `vX.Y.Z` traz o
@@ -149,7 +159,10 @@ ambiente de execução. Instruções para IAs em [`AGENTS.md`](AGENTS.md); pegad
   ScreenFakeCam, e a partir do Android 11 só câmeras pré-instaladas recebem o pedido "tirar foto" de outro app
   ([ADR-0002](docs/decisoes/ADR-0002-sem-camera-para-outros-apps.md)). Use a foto salva na galeria.
 - Câmera virtual por root ou injeção está fora do escopo de propósito: serve para enganar verificações de presença.
-- A resolução salva parte da imagem decodificada: não há garantia de manter todos os pixels de um arquivo grande.
+- Imagens grandes podem perder resolução ao carregar; o recorte usa o bitmap decodificado, sem garantia de
+  preservar todos os pixels do arquivo original.
+- A correção do teto de resolução está no [bug #81](https://github.com/BrunodosSantosVaz/screenfakecam/issues/81);
+  só uma Release posterior à v0.3.1 entrega essa correção ao usuário.
 - Em v0.3.1, o visor usa toque; a correção de teclado/D-pad está no [bug #70](https://github.com/BrunodosSantosVaz/screenfakecam/issues/70).
 - Sem versão para iPhone; sem edição além de zoom e enquadramento; sem vídeo.
 - No Android 8 e 9, salvar a foto pergunta onde guardar (o app não pede permissão de armazenamento).

@@ -79,6 +79,7 @@ C4Container
 
 - `app/src/main/`
 - `app/build.gradle.kts`
+- `app/gradle.lockfile`
 - `app/proguard-rules.pro`
 - `build.gradle.kts`
 - `settings.gradle.kts`

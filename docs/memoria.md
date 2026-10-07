@@ -11,6 +11,12 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 
 ## Build e testes
 
+- Teclado/D-pad do visor (#70): foco no próprio visor, com contorno âmbar; só KeyDown das setas e +/- muda o
+  enquadramento. Não capturar Tab/Voltar nem Ctrl/Alt/Meta. Os testes de UI usam createComposeRule v2 e injeção
+  de teclas; não confundir esses testes Robolectric com homologação do APK em aparelho físico.
+  Botões filhos propagam teclas não consumidas ao visor: conferir isFocused antes do handler, pois foco no botão
+  não autoriza atalhos de enquadramento. Nos testes, solicitar InputMode.Keyboard e verificar o foco semântico.
+
 - `compileSdk = 37`: as bibliotecas do Compose 1.12 (BOM 2026.09) exigem compilar contra a API 37; `targetSdk` segue 36.
 - Robolectric roda na imagem do **Android 35** (`app/src/test/resources/robolectric.properties`): na 36 ele falha com
   "Failed to interact with raw FileDescriptor internals" no JDK 21. Os testes também precisam de
@@ -24,6 +30,11 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 - `@Pendente // pendente da tarefa #N` + `PendingRule`: pendente que falha = pulado; pendente que passa = reprova.
 - Funções `@Composable` começam com maiúscula: o ktlint está configurado para isso no `.editorconfig`.
 - Cobertura mínima de 80% vale só para `domain` e `application` (Kover).
+- Teto de decodificação (#81, RN-0004): escolher potência de dois até ceil(lado/sample)<=maxSide; comparar a
+  próxima amostra para preservar lado>=maxSide excedia o teto. MainActivity passa duas vezes o lado maior da tela.
+  O teste unitário antigo esperava 800 para maxSide 500 e foi corrigido para 400 no commit de regressão; aceites/RN
+  ficaram intactos. PNG 10000/maxSide 4800 reproduziu largura 5000 antes do fix. Redução pode ficar abaixo do teto
+  por amostragem em potência de dois; não prometer conservação dos pixels originais.
 - Robolectric com `graphicsMode=NATIVE` (`robolectric.properties`): no modo simulado, `ImageBitmap` dá NullPointerException.
 - Arquitetura: só `ScreenFakeCamApp` (raiz de composição) conhece `infrastructure`; a `ui` fala com as portas de
   `application` (ex.: `PictureLoader`). O Konsist reprova `ui` importando `infrastructure`.
@@ -31,6 +42,10 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 ## Segurança
 
 - O manifesto não pede internet, armazenamento amplo nem câmera; `PermissionsTest` reprova se alguém acrescentar.
+- SBOM Android (#72): o job de publicação só tem o checkout, não o cache Gradle do build. Versionar
+  app/gradle.lockfile real (releaseCompileClasspath/releaseRuntimeClasspath), em modo estrito; Syft lê o lock e
+  inclui os componentes Maven. Atualização: resolver ambas configurações com --write-locks e revisar o diff.
+  O scanner de lock não prova licenças completas nem relações de dependência; não editar BOM/lock à mão.
 - A assinatura do APK só existe na CI, nos segredos `BB_ASSINATURA_*`; keystore nunca entra no repositório.
 
 - Épico #71 corrige somente documentos da produção. #73 registra critérios/procedimentos antes de #74, reutiliza 16 aceites vigentes intactos e exige leitura independente além da CI documental. Teclado (#70) e SBOM (#72) têm correções próprias; não inventar homologação física.
