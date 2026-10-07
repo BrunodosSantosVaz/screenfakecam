@@ -17,7 +17,7 @@ licenca = "GPL-3.0"                           # obrigatório se publico (identif
 [entrega]
 perfil = "compilado"                   # deploy | compilado
 alvo = ""                              # deploy: vps-docker | aws | paas ; compilado: ""
-caminhos_artefato = ["app/src/main/", "app/build.gradle.kts", "app/proguard-rules.pro", "build.gradle.kts",
+caminhos_artefato = ["app/src/main/", "app/build.gradle.kts", "app/gradle.lockfile", "app/proguard-rules.pro", "build.gradle.kts",
                      "settings.gradle.kts", "gradle.properties", "gradle/", "gradlew", "version.properties",
                      "packaging/"]
 arquivo_versao = "version.properties"   # único arquivo com a versão do artefato (version=X.Y.Z)

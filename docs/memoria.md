@@ -11,6 +11,11 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
 
 ## Build e testes
 
+- SBOM Android (#72): o job de publicação só tem o checkout, não o cache Gradle do build. Versionar
+  app/gradle.lockfile real (releaseCompileClasspath/releaseRuntimeClasspath), em modo estrito; Syft lê o lock e
+  inclui os componentes Maven. Atualização: resolver ambas configurações com --write-locks e revisar o diff.
+  O scanner de lock não prova licenças completas nem relações de dependência; não editar BOM/lock à mão.
+
 - `compileSdk = 37`: as bibliotecas do Compose 1.12 (BOM 2026.09) exigem compilar contra a API 37; `targetSdk` segue 36.
 - Robolectric roda na imagem do **Android 35** (`app/src/test/resources/robolectric.properties`): na 36 ele falha com
   "Failed to interact with raw FileDescriptor internals" no JDK 21. Os testes também precisam de

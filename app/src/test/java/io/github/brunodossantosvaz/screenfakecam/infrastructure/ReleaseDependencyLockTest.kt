@@ -24,9 +24,10 @@ class ReleaseDependencyLockTest {
                 assertTrue("$module must have a resolved version", version.matches(RESOLVED_VERSION))
             }
         }
-        assertFalse("Compose test tooling must not be represented as release runtime", dependencies.any {
-            it.startsWith("androidx.compose.ui:ui-test")
-        })
+        assertFalse(
+            "Compose test tooling must not be represented as release runtime",
+            dependencies.any { it.startsWith("androidx.compose.ui:ui-test") },
+        )
     }
 
     companion object {
