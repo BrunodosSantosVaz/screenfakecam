@@ -43,7 +43,7 @@ A revisão documental do épico [#71](https://github.com/BrunodosSantosVaz/scree
 
 Os [recibos da produção e da homologação v0.3.2](docs/validacao/032-producao.md) ligam CI, candidata, assinatura,
 SBOM e promoção dos mesmos bytes ao ensaio real em Android 15 emulado. A atualização documental segue o
-[plano do épico #84](docs/validacao/84-producao-032.md), sem construir outro APK.
+[plano e conferência do épico #84](docs/validacao/84-producao-032.md#conferência-documental-87), sem construir outro APK.
 
 ## Para que serve
 
