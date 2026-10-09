@@ -6,7 +6,7 @@ Aplicativo Android offline para enquadrar uma imagem escolhida, salvar uma nova 
 
 [Baixar APK v0.3.2](https://github.com/BrunodosSantosVaz/screenfakecam/releases/tag/v0.3.2) · Não substitui a câmera de outros aplicativos.
 
-Aplicativo **v0.3.2**, framework **Big Bang 2.0.0**, modo **Flash**. Esta manutenção conserva os artefatos publicados.
+Aplicativo **v0.3.2**, framework **Big Bang 2.0.1**, modo **Flash**. Esta manutenção conserva os artefatos publicados.
 
 A documentação oficial está na **[Wiki](https://github.com/BrunodosSantosVaz/screenfakecam/wiki)**:
 
