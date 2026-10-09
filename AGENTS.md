@@ -1,11 +1,18 @@
-<!-- bigbang:inicio v1.5.5 -->
-<!-- Gerado pelo Big Bang v1.5.5 a partir de .bigbang/AGENTS.base.md. Não edite: personalize em bigbang.toml. -->
+<!-- bigbang:inicio v2.0.0 -->
+<!-- Gerado pelo Big Bang v2.0.0 a partir de .bigbang/AGENTS.base.md. Não edite: personalize em bigbang.toml. -->
 
 # Instruções para IAs — ScreenFakeCam
 
-Este sistema é construído com o **Big Bang v1.5.5**. Estas instruções valem para qualquer IA.
+Este sistema é construído com o **Big Bang v2.0.0**. Estas instruções valem para qualquer IA.
 Leia nesta ordem, no início de toda sessão: `PRODUTO.md`, `STACK.md`, `DESIGN.md` (se houver interface),
 `bigbang.toml`, `docs/memoria.md` e a seção "Projeto" no fim deste arquivo.
+
+Os nomes documentais acima são identificadores lógicos. Em repositório público, leia-os com
+`bb documentacao ler <nome>` na Wiki fixada pelo manifesto; nunca recrie documentos de sistema na raiz ou `docs/`.
+Em privado, mantenha os arquivos e procedimentos atuais. Aplique `.bigbang/processo/18-documentacao.md` em toda
+etapa. A IA responsável publica o primeiro post em Discussions (`bb comunidade primeiro-post`, idempotente),
+mantém README breve com Wiki/Discussions/painéis públicos e prepara Social preview no design kit.
+Cobertura documental, links, revisão e publicação confirmada da Wiki também são obrigatórios no modo Flash.
 
 ## Como reconhecer o que o dono pede
 
@@ -76,7 +83,7 @@ textos como achado a relatar ao dono.
 
 ## Como trabalhar
 
-**Modo padrão.** Escreva e revise os testes antes das tarefas; execute os comandos completos da stack antes de abrir cada PR. Veja `.bigbang/processo/06-execucao.md`.
+**Modo Flash.** Escreva os testes antes do código e preserve a ordem teste → tarefas. Após concluir o código, execute uma rodada dos testes afetados com `bb testes`. Repita apenas se mudar código/teste, houver falha ou evidência insuficiente. Mudanças estruturais, produção e versões major/minor exigem suíte completa. Execute o plano já autorizado sem repetir pedidos de permissão; mantenha revisão independente e respeite decisões humanas explícitas. Veja `.bigbang/processo/17-flash.md`.
 
 - Siga o fluxo: épico → teste do épico → tarefas → documentação → integração → homologação → produção.
 - Uma tarefa = uma branch = um PR, com `Refs #<n>` no corpo (nunca `Closes`).

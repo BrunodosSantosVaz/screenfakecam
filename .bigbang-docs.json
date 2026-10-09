@@ -1,0 +1,524 @@
+{
+  "schema": 1,
+  "repositorio": "BrunodosSantosVaz/screenfakecam",
+  "visibilidade": "publico",
+  "wiki": {
+    "base": "6d57a741edda95dc433ecf4844b580f0c2af6bbb",
+    "commit": "ac1e51a405aa540a91c3f3171b3294fa0109635b",
+    "branch": "master",
+    "proposta": "bigbang/proposta-94-documentacao"
+  },
+  "paginas": {
+    "CHANGELOG.md": "Changelog",
+    "DESIGN.md": "Design",
+    "PRODUTO.md": "Produto",
+    "README.md": "Guia-de-inicio",
+    "STACK.md": "Tecnologia",
+    "docs/arquitetura/conteineres.md": "Historico-docs-arquitetura-conteineres",
+    "docs/arquitetura/contexto.md": "Historico-docs-arquitetura-contexto",
+    "docs/dados/inventario.md": "Historico-docs-dados-inventario",
+    "docs/decisoes/ADR-0001-stack.md": "ADR-0001-stack",
+    "docs/decisoes/ADR-0002-sem-camera-para-outros-apps.md": "ADR-0002-sem-camera-para-outros-apps",
+    "docs/decisoes/ADR-0003-testes-de-aceite-em-kotlin.md": "ADR-0003-testes-de-aceite-em-kotlin",
+    "docs/decisoes/ADR-0004-salvar-foto-sem-permissao.md": "ADR-0004-salvar-foto-sem-permissao",
+    "docs/decisoes/ADR-0005-paralelismo-das-tarefas.md": "ADR-0005-paralelismo-das-tarefas",
+    "docs/guia/usar.md": "Historico-docs-guia-usar",
+    "docs/memoria.md": "Historico-docs-memoria",
+    "docs/negocio/glossario.md": "Historico-docs-negocio-glossario",
+    "docs/negocio/regras/RN-0001-zoom-do-visor.md": "RN-0001-zoom-do-visor",
+    "docs/negocio/regras/RN-0002-enquadramento-dentro-da-imagem.md": "RN-0002-enquadramento-dentro-da-imagem",
+    "docs/negocio/regras/RN-0003-sem-acesso-proibido.md": "RN-0003-sem-acesso-proibido",
+    "docs/negocio/regras/RN-0004-foto-e-o-enquadramento.md": "RN-0004-foto-e-o-enquadramento",
+    "docs/negocio/regras/RN-0005-foto-so-pelo-obturador.md": "RN-0005-foto-so-pelo-obturador",
+    "docs/negocio/regras/RN-0006-ler-codigo-da-imagem.md": "RN-0006-ler-codigo-da-imagem",
+    "docs/negocio/regras/RN-0007-links-so-por-toque.md": "RN-0007-links-so-por-toque",
+    "docs/operacao/README.md": "Historico-docs-operacao-README",
+    "docs/operacao/assinatura.md": "Historico-docs-operacao-assinatura",
+    "docs/operacao/checklist-producao.md": "Historico-docs-operacao-checklist-producao",
+    "docs/operacao/entrega.md": "Historico-docs-operacao-entrega",
+    "docs/operacao/framework-155.md": "Historico-docs-operacao-framework-155",
+    "docs/operacao/incidente.md": "Historico-docs-operacao-incidente",
+    "docs/operacao/voltar-versao.md": "Historico-docs-operacao-voltar-versao",
+    "docs/pesquisa/2026-10-04-stack-android.md": "Historico-docs-pesquisa-2026-10-04-stack-android",
+    "docs/pesquisa/2026-10-07-limite-de-decodificacao.md": "Historico-docs-pesquisa-2026-10-07-limite-de-decodificacao",
+    "docs/pesquisa/2026-10-07-operacao-android.md": "Historico-docs-pesquisa-2026-10-07-operacao-android",
+    "docs/pesquisa/2026-10-07-sbom-gradle.md": "Historico-docs-pesquisa-2026-10-07-sbom-gradle",
+    "docs/pesquisa/2026-10-07-teclado-do-visor.md": "Historico-docs-pesquisa-2026-10-07-teclado-do-visor",
+    "docs/validacao/032-producao.md": "Historico-docs-validacao-032-producao",
+    "docs/validacao/71-documentacao-producao.md": "Historico-docs-validacao-71-documentacao-producao",
+    "docs/validacao/84-producao-032.md": "Historico-docs-validacao-84-producao-032",
+    "docs/decisoes/ADR-0006-wiki-publica-e-flash.md": "ADR-0006-wiki-publica-e-flash",
+    "docs/operacao/ambiente.md": "Ambiente"
+  },
+  "categorias": {
+    "produto": {
+      "pagina": "Produto"
+    },
+    "tecnologia": {
+      "pagina": "Tecnologia"
+    },
+    "arquitetura": {
+      "pagina": "Arquitetura"
+    },
+    "design": {
+      "pagina": "Design"
+    },
+    "requisitos": {
+      "pagina": "Requisitos"
+    },
+    "funcionalidades": {
+      "pagina": "Funcionalidades"
+    },
+    "uso": {
+      "pagina": "Guia-de-inicio"
+    },
+    "referencia": {
+      "pagina": "Referencia"
+    },
+    "seguranca": {
+      "pagina": "Seguranca"
+    },
+    "operacao": {
+      "pagina": "Operacao"
+    },
+    "historico": {
+      "pagina": "Historico"
+    }
+  },
+  "requisitos": {
+    "RN-0001": {
+      "pagina": "RN-0001-zoom-do-visor"
+    },
+    "RN-0002": {
+      "pagina": "RN-0002-enquadramento-dentro-da-imagem"
+    },
+    "RN-0003": {
+      "pagina": "RN-0003-sem-acesso-proibido"
+    },
+    "RN-0004": {
+      "pagina": "RN-0004-foto-e-o-enquadramento"
+    },
+    "RN-0005": {
+      "pagina": "RN-0005-foto-so-pelo-obturador"
+    },
+    "RN-0006": {
+      "pagina": "RN-0006-ler-codigo-da-imagem"
+    },
+    "RN-0007": {
+      "pagina": "RN-0007-links-so-por-toque"
+    },
+    "RF-DESIGN": {
+      "pagina": "Requisitos"
+    },
+    "RF-ENTREGA": {
+      "pagina": "Requisitos"
+    }
+  },
+  "codigo": {
+    "commit": "57179094f500dea3311c366f651c0a7de50658b9",
+    "versao": "0.3.2",
+    "framework": "2.0.0",
+    "raizes": [
+      "app/src/main/",
+      "app/build.gradle.kts",
+      "app/gradle.lockfile",
+      "app/proguard-rules.pro",
+      "build.gradle.kts",
+      "settings.gradle.kts",
+      "gradle.properties",
+      "gradle/",
+      "gradlew",
+      "gradlew.bat",
+      "version.properties",
+      "packaging/",
+      "docs/design/",
+      ".github/",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "bigbang.toml",
+      ".bigbang-producao.json"
+    ],
+    "excluir": [],
+    "justificativas_exclusao": {
+      "testes_colocados": "Arquivos .test.ts são cenários de verificação, não módulos de execução; lista explícita mantém runtime inteiro inventariado.",
+      "framework": "Camada .bigbang é dependência instalada de release oficial 2.0.0, documentada e testada na Wiki do Big Bang; integrações/configuração do sistema são inventariadas aqui.",
+      "documentacao": "Prosa, imagens demonstrativas e registros migrados não implementam funcionalidades; contratos/runtime em docs permanecem inventariados.",
+      "derivados": "O próprio manifesto e README de entrada não são código executável; evitar hash recursivo e documentação duplicada."
+    }
+  },
+  "funcionalidades": [
+    {
+      "id": "SCREEN-01",
+      "titulo": "Seleção de imagem e composição",
+      "pagina": "Funcionalidade-01",
+      "fontes": [
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ScreenFakeCamApp.kt",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/application/PictureLoader.kt",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/AndroidPictureLoader.kt"
+      ],
+      "testes": [
+        "app/src/test/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/AndroidPictureLoaderTest.kt:AndroidPictureLoaderTest"
+      ],
+      "requisitos": [
+        "RN-0001",
+        "RN-0003"
+      ],
+      "hashes": {
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ScreenFakeCamApp.kt": "sha256:6d5ebf124ebb5660bcdc846e1d54b28e0e8ef91b8b5e8f968ac260d61134bc85",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/application/PictureLoader.kt": "sha256:0c5613856e0e32b6b96487f4b52907005e7226f5ab404cb4a691a2de0878e2a7",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/AndroidPictureLoader.kt": "sha256:df90577336fc4a379bcf076e539a5caca095c5712f89ae787cf5fbdfcebbd0b9"
+      }
+    },
+    {
+      "id": "SCREEN-02",
+      "titulo": "Enquadramento, zoom e arraste",
+      "pagina": "Funcionalidade-02",
+      "fontes": [
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/domain/Framing.kt"
+      ],
+      "testes": [
+        "app/src/test/java/io/github/brunodossantosvaz/screenfakecam/domain/FramingTest.kt:zoomStaysBetweenOneAndFour"
+      ],
+      "requisitos": [
+        "RN-0001",
+        "RN-0002",
+        "RN-0004"
+      ],
+      "hashes": {
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/domain/Framing.kt": "sha256:3b95ad67ef6dfb0009b511aafcdc3d5b22901c5152889bae46358f69e1533781"
+      }
+    },
+    {
+      "id": "SCREEN-03",
+      "titulo": "Visor, estados e teclado",
+      "pagina": "Funcionalidade-03",
+      "fontes": [
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/ViewfinderScreen.kt",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/ViewfinderViewModel.kt"
+      ],
+      "testes": [
+        "app/src/test/java/io/github/brunodossantosvaz/screenfakecam/ui/ViewfinderKeyboardTest.kt:ViewfinderKeyboardTest"
+      ],
+      "requisitos": [
+        "RN-0001",
+        "RN-0002",
+        "RN-0004",
+        "RN-0005"
+      ],
+      "hashes": {
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/ViewfinderScreen.kt": "sha256:3323ce12bb07842b53c15ebee7e6baba70909d4f9c116ee5eac054f5c3621f1d",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/ViewfinderViewModel.kt": "sha256:40ab27b317f1744d53459ebbe4cef6707e7824a6ddb4bb9939ec388a84df5c56"
+      }
+    },
+    {
+      "id": "SCREEN-04",
+      "titulo": "Captura e gravação de foto",
+      "pagina": "Funcionalidade-04",
+      "fontes": [
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/application/Shutter.kt",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/AndroidPhotoStore.kt"
+      ],
+      "testes": [
+        "app/src/test/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/AndroidPhotoStoreTest.kt:savesTheRegionAsANewJpegWhereTheUserChose"
+      ],
+      "requisitos": [
+        "RN-0003",
+        "RN-0004",
+        "RN-0005"
+      ],
+      "hashes": {
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/application/Shutter.kt": "sha256:b29588646192e52d2a299e99da707812f1cc71674f8043b7159f618feb713224",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/AndroidPhotoStore.kt": "sha256:aa8f514ca192d8250b2eb496dc5379936d810f5141111f36b0821bd0a503bb96"
+      }
+    },
+    {
+      "id": "SCREEN-05",
+      "titulo": "Foto salva, compartilhamento e navegação",
+      "pagina": "Funcionalidade-05",
+      "fontes": [
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/MainActivity.kt",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/SavedPhotoScreen.kt"
+      ],
+      "testes": [
+        "app/src/test/java/io/github/brunodossantosvaz/screenfakecam/ui/SavedPhotoScreenTest.kt:SavedPhotoScreenTest"
+      ],
+      "requisitos": [
+        "RN-0003",
+        "RN-0005",
+        "RN-0007"
+      ],
+      "hashes": {
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/MainActivity.kt": "sha256:683676b6a3197788e5f92ef5e7ebd831f632b20f42842b31b5288e9fbcf087ad",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/SavedPhotoScreen.kt": "sha256:6600428575f42b92824038f0cdf90ee6d611ed49ab0d573ea15c23c3cfa360fb"
+      }
+    },
+    {
+      "id": "SCREEN-06",
+      "titulo": "Leitura offline de QR e códigos",
+      "pagina": "Funcionalidade-06",
+      "fontes": [
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/application/CodeReader.kt",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/ZxingCodeReader.kt",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/CodeViewModel.kt"
+      ],
+      "testes": [
+        "app/src/test/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/ZxingCodeReaderTest.kt:ZxingCodeReaderTest"
+      ],
+      "requisitos": [
+        "RN-0006"
+      ],
+      "hashes": {
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/application/CodeReader.kt": "sha256:54aed9114858093e1b01f577cb7066ac2c9bb4d14dccdb7d8e0a957fcb0a489a",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/ZxingCodeReader.kt": "sha256:b3a09453b21014f7bcea2f4f6a105e07ff28d41a731d2e3b89d778a4fd5564be",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/CodeViewModel.kt": "sha256:d63b03d0638835cb9cb5556f2bd2ba23e60e944ebb5ae96093139da2791e43b0"
+      }
+    },
+    {
+      "id": "SCREEN-07",
+      "titulo": "Resultado e política de links",
+      "pagina": "Funcionalidade-07",
+      "fontes": [
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/domain/LinkPolicy.kt",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/CodeResultScreen.kt"
+      ],
+      "testes": [
+        "app/src/test/java/io/github/brunodossantosvaz/screenfakecam/domain/LinkPolicyTest.kt:LinkPolicyTest"
+      ],
+      "requisitos": [
+        "RN-0006",
+        "RN-0007"
+      ],
+      "hashes": {
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/domain/LinkPolicy.kt": "sha256:d72a86e9b96bb015449ada0d0be71ed39ae5af503e418c78727da586b866f3fc",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/CodeResultScreen.kt": "sha256:9f30434f81a210768c3b12a43e98351177bb58209433dd09d8e930cf1a0cce5a"
+      }
+    },
+    {
+      "id": "SCREEN-08",
+      "titulo": "Tema, recursos e acessibilidade",
+      "pagina": "Funcionalidade-08",
+      "fontes": [
+        "app/src/main/AndroidManifest.xml",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/theme/Theme.kt",
+        "app/src/main/res/drawable/ic_launcher_foreground.xml",
+        "app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+        "app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml",
+        "app/src/main/res/values/ic_launcher.xml",
+        "app/src/main/res/values/strings.xml",
+        "docs/design/icone.svg",
+        "docs/design/logo.svg",
+        "docs/design/tokens.css"
+      ],
+      "testes": [
+        "app/src/test/java/io/github/brunodossantosvaz/screenfakecam/ui/LauncherIconTest.kt:LauncherIconTest"
+      ],
+      "requisitos": [
+        "RN-0003",
+        "RF-DESIGN"
+      ],
+      "hashes": {
+        "app/src/main/AndroidManifest.xml": "sha256:0e09898c195c98e325de76ea125572d3c8a9ad8d274462d6e4642166ca5baa9e",
+        "app/src/main/java/io/github/brunodossantosvaz/screenfakecam/ui/theme/Theme.kt": "sha256:d53f54646458e1f8e6b82ea4133de199dff1946b8f7455e004ac4e3ee9098a2f",
+        "app/src/main/res/drawable/ic_launcher_foreground.xml": "sha256:faecb73f93be64a74bb227f7c47ac4c0e7318a17e016e7247efb02d10fe660ad",
+        "app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml": "sha256:678da6560d837e905ba0c82a15a11918714729de283138721e85ccc1eb1ee9ff",
+        "app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml": "sha256:678da6560d837e905ba0c82a15a11918714729de283138721e85ccc1eb1ee9ff",
+        "app/src/main/res/values/ic_launcher.xml": "sha256:b54bc246c11f5e12b46926eef269f08b67cf612cc8e9a9580f86d95820b1a2b1",
+        "app/src/main/res/values/strings.xml": "sha256:ed796762c6fc4b058283fcbfefd8607d3385807880ef2e727e6f2b71cc62e4af",
+        "docs/design/icone.svg": "sha256:be6f399c72415f6ac026facfbc55c627f8ea72a44ae05cafa35a0038e7ad1767",
+        "docs/design/logo.svg": "sha256:be6f399c72415f6ac026facfbc55c627f8ea72a44ae05cafa35a0038e7ad1767",
+        "docs/design/tokens.css": "sha256:e13c6ba6349667fff35ac2ed389f17a1d75cadb000858ce8257a7621387f3b2a"
+      }
+    },
+    {
+      "id": "SCREEN-09",
+      "titulo": "Build, contratos e distribuição",
+      "pagina": "Funcionalidade-09",
+      "fontes": [
+        "app/build.gradle.kts",
+        "app/gradle.lockfile",
+        "app/proguard-rules.pro",
+        "build.gradle.kts",
+        "gradle.properties",
+        "gradle/libs.versions.toml",
+        "gradle/wrapper/gradle-wrapper.jar",
+        "gradle/wrapper/gradle-wrapper.properties",
+        "gradlew",
+        "gradlew.bat",
+        "packaging/android/build.sh",
+        "settings.gradle.kts",
+        "version.properties"
+      ],
+      "testes": [
+        "app/src/test/java/io/github/brunodossantosvaz/screenfakecam/infrastructure/ReleaseDependencyLockTest.kt:ReleaseDependencyLockTest"
+      ],
+      "requisitos": [
+        "RF-ENTREGA"
+      ],
+      "hashes": {
+        "app/build.gradle.kts": "sha256:07383878c577200e512bfe467c9d691bd96079719f35dfaf7c54d37cd60d97cb",
+        "app/gradle.lockfile": "sha256:fc31128796eaa6c9a007b03abb4b2370d90ee6c5f9d673897c172c3f21765149",
+        "app/proguard-rules.pro": "sha256:6ae57061a06edf0a91e60cb65a9cbc7e53708c74ccc43f1fb49fcfaff6ef0202",
+        "build.gradle.kts": "sha256:52feac64011a0a30a5cdee58e76b06efb0023e827e7570fcad533db8e7469acf",
+        "gradle.properties": "sha256:c0c926862c9d98a49fbd80ada5f934d0ef3d46afd91e1b4ca0fd2bbe990a5967",
+        "gradle/libs.versions.toml": "sha256:0bbcf2fe784fcb7310b1b019486d4129696b6df227f25cee8146a2fcaa8f192f",
+        "gradle/wrapper/gradle-wrapper.jar": "sha256:238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5",
+        "gradle/wrapper/gradle-wrapper.properties": "sha256:e81b90975868be2513ca00d6a5a01303a406a5cb01a306210b887e983e4b17ae",
+        "gradlew": "sha256:a5a5c199ba02189ae8c46a334223371a20599d9c298ef65e7540ede4a3f72d59",
+        "gradlew.bat": "sha256:f17917f8dbe61182b149273ee78090fec1197442c3f38276af907bfa5190db16",
+        "packaging/android/build.sh": "sha256:931e42c38b142ac609849a712ebe99ce4cb704460b358c68dab2100376a46315",
+        "settings.gradle.kts": "sha256:58b22f644aaac806b956cf584ff1236cec4b34b92e4286c1d6b6db906690a242",
+        "version.properties": "sha256:1bd71383d43a25a92d3f0eb6af73945f45f450df2d831113354446245ef7b2cb"
+      }
+    },
+    {
+      "id": "SCREEN-10",
+      "titulo": "Esteira, manutenção e documentação pública",
+      "pagina": "Funcionalidade-10",
+      "fontes": [
+        ".bigbang-producao.json",
+        ".github/ISSUE_TEMPLATE/bb-bug.yml",
+        ".github/ISSUE_TEMPLATE/bb-documentacao.yml",
+        ".github/ISSUE_TEMPLATE/bb-epico.yml",
+        ".github/ISSUE_TEMPLATE/bb-fundacao.yml",
+        ".github/ISSUE_TEMPLATE/bb-tarefa.yml",
+        ".github/ISSUE_TEMPLATE/bb-teste-aceite.yml",
+        ".github/ISSUE_TEMPLATE/config.yml",
+        ".github/dependabot.yml",
+        ".github/pull_request_template.md",
+        ".github/workflows/bb-candidata.yml",
+        ".github/workflows/bb-ci.yml",
+        ".github/workflows/bb-codeql.yml",
+        ".github/workflows/bb-criar-branches.yml",
+        ".github/workflows/bb-encerrar.yml",
+        ".github/workflows/bb-faxina.yml",
+        ".github/workflows/bb-iniciar-sprint.yml",
+        ".github/workflows/bb-integrar-release.yml",
+        ".github/workflows/bb-kanban.yml",
+        ".github/workflows/bb-mesclar-pr.yml",
+        ".github/workflows/bb-posses.yml",
+        ".github/workflows/bb-publicar-producao.yml",
+        ".github/workflows/bb-publicar-sem-release.yml",
+        ".github/workflows/bb-regras-pr.yml",
+        ".github/workflows/bb-seguranca.yml",
+        ".github/workflows/bb-tarefa-de-correcao.yml",
+        ".github/workflows/bb-ver-paineis.yml",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "bigbang.toml"
+      ],
+      "testes": [
+        ".bigbang/tests/test_bb_gerar.py:test_composicao_compilado_sem_alvo",
+        ".bigbang/tests/test_wiki.py:test_cli_proposal_review_and_publication_preserve_original_until_confirmed",
+        ".bigbang/tests/test_wiki.py:test_new_implemented_module_without_documentation_blocks_delivery",
+        ".bigbang/tests/test_wiki.py:test_concurrent_owner_change_is_preserved_and_publication_rejected",
+        ".bigbang/tests/test_community_public.py:test_anonymous_reader_cannot_edit_public_board",
+        ".bigbang/tests/test_flash.py:test_structural_changes_run_complete_suite",
+        ".bigbang/tests/test_faxina.py:test_apaga_o_que_terminou_e_avisa_o_resto"
+      ],
+      "requisitos": [
+        "RF-ENTREGA"
+      ],
+      "hashes": {
+        ".bigbang-producao.json": "sha256:8d32692f02c9caf57ebb6f1b84bbdbdb4a5e58ac2d0c9a559ca2d60eb0a027f6",
+        ".github/ISSUE_TEMPLATE/bb-bug.yml": "sha256:5b6a48420e79afe4023704aa32ee2ee9e50ad0f0462b73ccbd2ff50357ffea4b",
+        ".github/ISSUE_TEMPLATE/bb-documentacao.yml": "sha256:95d7e3ae40717ec2cf127b9b76e1f3ba12079502ca76566a31ed9a9f351fec17",
+        ".github/ISSUE_TEMPLATE/bb-epico.yml": "sha256:c0fc820853c113a86e172e311169ce8cd127a193f1eba8ea7e4a9850ca15b9af",
+        ".github/ISSUE_TEMPLATE/bb-fundacao.yml": "sha256:2528c803b95c55d2383300d06ca37bd1db0cefe861810b8f58602bea978f75cf",
+        ".github/ISSUE_TEMPLATE/bb-tarefa.yml": "sha256:1d1313d36dd41539c8bd1edca89343edf907d6856a67b7f5bdada98453ee01cc",
+        ".github/ISSUE_TEMPLATE/bb-teste-aceite.yml": "sha256:2e0e7334a3d84a8322d6fff6e3abc281ffbb93e08868476342af1243c0491000",
+        ".github/ISSUE_TEMPLATE/config.yml": "sha256:8e81bfdc64f8278458eca34bf724cde0da466d0bcd1f6e1dfbe4a28b5b522050",
+        ".github/dependabot.yml": "sha256:2f16b07e6dc357ebfb31b94a6c129a208beb7f036cfc852954bc0572a384d3c9",
+        ".github/pull_request_template.md": "sha256:89902910cc6fb438a363cd32304ce002658aafee51f4ac70123012608a06a18f",
+        ".github/workflows/bb-candidata.yml": "sha256:a01ea2e0cf07d73a6d373ebdfec18f356601c707f1581c03447f177f38682c18",
+        ".github/workflows/bb-ci.yml": "sha256:37981ab7f5b330b04a739ab908ecbe4006d3e5f4fccb3a68e1c0a363cc9ec504",
+        ".github/workflows/bb-codeql.yml": "sha256:e288d819eab6cfb8bb5e9a4a0b5b9cf239cbb5bc4e021a01c2eaba0e9dbd34e0",
+        ".github/workflows/bb-criar-branches.yml": "sha256:e3ab09e71fc1a02615033adc87ea71113a48f9ac2a8f537f60d19b744b00f405",
+        ".github/workflows/bb-encerrar.yml": "sha256:e00f9b88a3404550b3efa5e6b53a343160ca7067a80c13969e46b05b5cf86370",
+        ".github/workflows/bb-faxina.yml": "sha256:48c2939bb754e7b2a55f2a05f914780e00f417c27ed6f5b1398eefa86206dfd1",
+        ".github/workflows/bb-iniciar-sprint.yml": "sha256:56220f738e872207f8e845b17b81578a13bd85ac8f05cdafba73cecca8d5dc21",
+        ".github/workflows/bb-integrar-release.yml": "sha256:bcb9044b2c5baa643e9f5697efb8ec9fc7cddd34047f92e69e4468fd80c306fe",
+        ".github/workflows/bb-kanban.yml": "sha256:aac2fb3ab0957bcd1ab148254b36c4fce026f6a2481fc5fc37c0cdbcf47dc9fb",
+        ".github/workflows/bb-mesclar-pr.yml": "sha256:7cb5927af58613a191d3c2ba4d700f47d94a549548a84eb51a03471a9e198973",
+        ".github/workflows/bb-posses.yml": "sha256:6ea8121b7382007105be42f1c6d19ef25c38cbeded195f9b7edf5a205d9c3b2a",
+        ".github/workflows/bb-publicar-producao.yml": "sha256:c288a16ac9798d09002b9d1eec777f1ff02e83b97fd1e42e2152142bc3ef78ed",
+        ".github/workflows/bb-publicar-sem-release.yml": "sha256:aca32fe89e46605d2f547327f6bade6b118ddc1992b661f114ca6b40def488d7",
+        ".github/workflows/bb-regras-pr.yml": "sha256:35c704df1bbd8072939e1203d11b80e50adda0cef581f66b89cd9525b0ff53ba",
+        ".github/workflows/bb-seguranca.yml": "sha256:86061220aa99c7ce83657507a14bb392eb1ab19a24a205e41cc1c4ec5b8feb9d",
+        ".github/workflows/bb-tarefa-de-correcao.yml": "sha256:83f40ffa68fae74f2b271a95c345af235c4a9215bfa403c8331896867704d67f",
+        ".github/workflows/bb-ver-paineis.yml": "sha256:c56af104f6eed8c2d1f110f4d4e6b32ae99aa465943275f1a02a22a70ee284ba",
+        "AGENTS.md": "sha256:7c033fc5e00d74f7085e85b509e88c407e92a90affd5694d554c17a9415fe6fc",
+        "CLAUDE.md": "sha256:336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+        "bigbang.toml": "sha256:6af4295a2b2214dbb1ec5bd4743b6e5cd07174e985097251fe5b829840fb76ca"
+      }
+    }
+  ],
+  "arquivos_funcionais": [
+    {
+      "caminho": ".bigbang/MIGRACAO.md",
+      "motivo": "Contrato revisado consumido pelo atualizador oficial antes de instalar pacote."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0001-zoom-do-visor.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0002-enquadramento-dentro-da-imagem.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0003-sem-acesso-proibido.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0004-foto-e-o-enquadramento.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0005-foto-so-pelo-obturador.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0006-ler-codigo-da-imagem.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0007-links-so-por-toque.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "STACK.md",
+      "motivo": "Contrato transitório com somente tabela consumida pela Guarda da stack confiada v1.5.5 da branch de destino. Sem manual de sistema; Wiki canônica publicada. Remover quando destino instalado 2.0.0."
+    }
+  ],
+  "revisao": {
+    "codigo": "57179094f500dea3311c366f651c0a7de50658b9",
+    "wiki_base": "3b0c430173307a69e96768a03b87e0ab22616c0e",
+    "independente": "aprovada pré-publicação incluindo ponte",
+    "pr": 95,
+    "wiki_revisada": "ac1e51a405aa540a91c3f3171b3294fa0109635b",
+    "revisor": "contexto limpo bb-revisor-pr",
+    "escopo": "Conteúdo, matriz, fontes, cenários, links, navegação e preservação dos originais; CI/finalPR após publicação.",
+    "commit_ponte": "c88b3aeb21bdbb8b5c84a7aa8f202376f23e2c86"
+  },
+  "social_preview": {
+    "arquivo_wiki": "assets/social-preview.png",
+    "largura": 1280,
+    "altura": 640,
+    "upload_confirmado": false
+  },
+  "migracao": {
+    "fase": "ponte para atualizar o validador confiado da branch de destino",
+    "commit_ponte": "c88b3aeb21bdbb8b5c84a7aa8f202376f23e2c86",
+    "entradas_transitorias": [
+      "docs/negocio/regras/RN-0001-zoom-do-visor.md",
+      "docs/negocio/regras/RN-0002-enquadramento-dentro-da-imagem.md",
+      "docs/negocio/regras/RN-0003-sem-acesso-proibido.md",
+      "docs/negocio/regras/RN-0004-foto-e-o-enquadramento.md",
+      "docs/negocio/regras/RN-0005-foto-so-pelo-obturador.md",
+      "docs/negocio/regras/RN-0006-ler-codigo-da-imagem.md",
+      "docs/negocio/regras/RN-0007-links-so-por-toque.md",
+      "STACK.md"
+    ],
+    "remocao_pendente": "tarefa seguinte depois que main/develop utilizarem Big Bang 2.0.0; não desativar portões nem alterar RNs/aceites"
+  }
+}
