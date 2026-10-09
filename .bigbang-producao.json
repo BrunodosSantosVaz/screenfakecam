@@ -1,0 +1,46 @@
+{
+  "O backend sobe sem erro": [
+    "nao-se-aplica",
+    "app sem servidor"
+  ],
+  "O front compila": [
+    "portao",
+    "candidata"
+  ],
+  "As migrações rodam do zero e a partir da versão anterior": [
+    "nao-se-aplica",
+    "app sem banco de dados"
+  ],
+  "O ambiente sobe pelo método de deploy do alvo": [
+    "nao-se-aplica",
+    "perfil compilado; o usuário instala o APK assinado da Release"
+  ],
+  "Nenhum segredo no pacote do front": [
+    "portao",
+    "seguranca"
+  ],
+  "Rotas privadas exigem autenticação": [
+    "nao-se-aplica",
+    "app sem servidor e sem login"
+  ],
+  "CORS de produção configurado por ambiente": [
+    "nao-se-aplica",
+    "app sem servidor"
+  ],
+  "Testes de limite de requisições presentes e passando": [
+    "nao-se-aplica",
+    "app sem endpoints (não usa internet, RN-0003)"
+  ],
+  "/api/health responde sem autenticação": [
+    "nao-se-aplica",
+    "app sem servidor"
+  ],
+  "O README documenta as variáveis de ambiente sem valores": [
+    "portao",
+    "builtin"
+  ],
+  "A auditoria de segurança não tem achado crítico ou alto aberto": [
+    "portao",
+    "builtin"
+  ]
+}
