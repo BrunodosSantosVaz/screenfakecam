@@ -456,6 +456,38 @@
     {
       "caminho": ".bigbang/MIGRACAO.md",
       "motivo": "Contrato revisado consumido pelo atualizador oficial antes de instalar pacote."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0001-zoom-do-visor.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0002-enquadramento-dentro-da-imagem.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0003-sem-acesso-proibido.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0004-foto-e-o-enquadramento.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0005-foto-so-pelo-obturador.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0006-ler-codigo-da-imagem.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "docs/negocio/regras/RN-0007-links-so-por-toque.md",
+      "motivo": "Entrada transitória de rastreabilidade consumida pelo código confiado v1.5.5 da branch de destino durante atualização do framework; conteúdo congelado idêntico, Wiki já canônica. Remover na tarefa seguinte após destino 2.0.0."
+    },
+    {
+      "caminho": "STACK.md",
+      "motivo": "Contrato transitório com somente tabela consumida pela Guarda da stack confiada v1.5.5 da branch de destino. Sem manual de sistema; Wiki canônica publicada. Remover quando destino instalado 2.0.0."
     }
   ],
   "revisao": {
