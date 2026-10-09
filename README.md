@@ -37,6 +37,9 @@ teto de decodificação corrigido, além do leitor de QR/código de barras, obtu
 
 O ScreenFakeCam é o primeiro sistema feito do zero com o framework [Big Bang](https://github.com/BrunodosSantosVaz/big-bang):
 da entrevista do produto à publicação, tudo passou pela esteira (testes de aceite travados, homologação e produção).
+A esteira usa o [Big Bang v1.5.5](https://github.com/BrunodosSantosVaz/big-bang/releases/tag/v1.5.5), mantendo o modo padrão.
+Atualizações do framework e das Actions seguem Publicar sem release; o botão Faxina e a recuperação diária
+conferem sobras, preservando PRs abertos e commits exclusivos. [Procedimento](docs/operacao/framework-155.md).
 
 A revisão documental do épico [#71](https://github.com/BrunodosSantosVaz/screenfakecam/issues/71) usa um
 [plano de validação](docs/validacao/71-documentacao-producao.md) contra o comportamento publicado, sem alterar o APK.
