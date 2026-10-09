@@ -3,8 +3,8 @@
   "repositorio": "BrunodosSantosVaz/screenfakecam",
   "visibilidade": "publico",
   "wiki": {
-    "base": "3b0c430173307a69e96768a03b87e0ab22616c0e",
-    "commit": "6d57a741edda95dc433ecf4844b580f0c2af6bbb",
+    "base": "6d57a741edda95dc433ecf4844b580f0c2af6bbb",
+    "commit": "ac1e51a405aa540a91c3f3171b3294fa0109635b",
     "branch": "master",
     "proposta": "bigbang/proposta-94-documentacao"
   },
@@ -493,16 +493,32 @@
   "revisao": {
     "codigo": "57179094f500dea3311c366f651c0a7de50658b9",
     "wiki_base": "3b0c430173307a69e96768a03b87e0ab22616c0e",
-    "independente": "aprovada pré-publicação",
+    "independente": "aprovada pré-publicação incluindo ponte",
     "pr": 95,
-    "wiki_revisada": "6d57a741edda95dc433ecf4844b580f0c2af6bbb",
+    "wiki_revisada": "ac1e51a405aa540a91c3f3171b3294fa0109635b",
     "revisor": "contexto limpo bb-revisor-pr",
-    "escopo": "Conteúdo, matriz, fontes, cenários, links, navegação e preservação dos originais; CI/finalPR após publicação."
+    "escopo": "Conteúdo, matriz, fontes, cenários, links, navegação e preservação dos originais; CI/finalPR após publicação.",
+    "commit_ponte": "c88b3aeb21bdbb8b5c84a7aa8f202376f23e2c86"
   },
   "social_preview": {
     "arquivo_wiki": "assets/social-preview.png",
     "largura": 1280,
     "altura": 640,
     "upload_confirmado": false
+  },
+  "migracao": {
+    "fase": "ponte para atualizar o validador confiado da branch de destino",
+    "commit_ponte": "c88b3aeb21bdbb8b5c84a7aa8f202376f23e2c86",
+    "entradas_transitorias": [
+      "docs/negocio/regras/RN-0001-zoom-do-visor.md",
+      "docs/negocio/regras/RN-0002-enquadramento-dentro-da-imagem.md",
+      "docs/negocio/regras/RN-0003-sem-acesso-proibido.md",
+      "docs/negocio/regras/RN-0004-foto-e-o-enquadramento.md",
+      "docs/negocio/regras/RN-0005-foto-so-pelo-obturador.md",
+      "docs/negocio/regras/RN-0006-ler-codigo-da-imagem.md",
+      "docs/negocio/regras/RN-0007-links-so-por-toque.md",
+      "STACK.md"
+    ],
+    "remocao_pendente": "tarefa seguinte depois que main/develop utilizarem Big Bang 2.0.0; não desativar portões nem alterar RNs/aceites"
   }
 }
