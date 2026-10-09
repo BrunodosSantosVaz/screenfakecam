@@ -81,3 +81,14 @@ Pegadinhas que a próxima sessão (de qualquer IA ou pessoa) precisa saber. Uma 
   merge 9e1100b7..., CI/Regras/Segurança/CodeQL exatos verdes e revisão independente. Pós-merge falhou por
   variável do framework ausente; branch #87 criada pelo workflow canônico 37593154761 após simulação verde.
   Artefato/framework/RNs/aceites intactos; publicação documental sem release acompanha o status do épico #84.
+
+## Framework v1.5.5 — manutenção sem release (09/10/2026)
+
+- Atualização #91 usa `bb atualizar` oficial: pacote com SHA-256 e atestação, seguida de `bb gerar` e `bb verificar`.
+  Origem v1.4.0; modo padrão preservado. README e Actions acompanham a atualização; configurações do artefato não mudam.
+- Framework/esteira são estruturais: CI completa e revisão independente no SHA final, sem repetir suíte interna do framework no consumidor.
+  Publicar sem release exige develop verde, diff vazio nos caminhos do artefato e autorização do ambiente producao já dada pelo dono.
+- Produção do aplicativo permanece v0.3.2: sem candidata, tag nova, imagem/APK novo ou promoção de artefato.
+- Faxina diária/botão executa scripts da main. Simular publicação/encerramento não dispara limpeza real.
+  Encerrar falha com sobras e falhas da API são explícitas; branches com PR aberto/commits exclusivos e tags são protegidas.
+  Não desligar portões nem apagar trabalho exclusivo para esconder aviso. Recibo final na issue #91.
