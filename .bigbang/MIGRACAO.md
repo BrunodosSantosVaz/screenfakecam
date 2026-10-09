@@ -4,6 +4,150 @@ O que muda em cada versão do framework e o que um projeto precisa fazer ao atua
 SemVer: versão **maior** = o projeto precisa agir, e a seção diz como. A camada do projeto nunca é tocada.
 Cada seção tem "O que muda" e "O que o projeto precisa fazer" ("Nada." quando não há passo manual).
 
+## [1.5.5] - 2026-10-09
+
+### O que muda
+
+O próprio framework executa a faxina após CI/publicação e fechamento de issues, além da recuperação diária.
+A exclusão aguarda a tag da ponta da main, release estável com pacote/hash, conteúdo sincronizado e CI de
+push verde nos SHAs exatos de main/develop. O checkout privilegiado usa apenas main, nunca código de PR.
+
+Nos consumidores, `bb gerar` instala o botão Faxina com recuperação diária e simulação manual, complementando
+a limpeza feita ao final das publicações reais e do Encerrar. Simulações desses fluxos não disparam faxina real.
+Só branches incorporadas com trabalho concluído são
+apagadas; main/develop/tags, PRs abertos e commits exclusivos ficam preservados. Encerrar agora falha se
+a faxina apontar sobras, sem desfazer uma publicação já realizada. Resolva cada ponto e execute novamente.
+
+Essa atualização da esteira não altera os caminhos do artefato nem exige versão nova do aplicativo.
+Use `bb atualizar 1.5.5` e Publicar sem release após CI/revisão; o pacote do framework tem versão própria,
+hash e atestação, sem substituir as releases anteriores.
+
+### O que o projeto precisa fazer
+
+Nada.
+
+## [1.5.4] - 2026-10-08
+
+### O que muda
+
+Os índices das skills e do perfil compilado descrevem os recursos já implementados: atualização oficial por
+hash/atestação e promoção dos mesmos binários da candidata. O README, o guia de contribuição e o relatório da
+entrega distinguem produção comprovada, histórico de homologação e critérios de campo ainda pendentes.
+Nenhum comando, adaptador, teste ou portão muda nesta atualização documental.
+
+### O que o projeto precisa fazer
+
+Nada.
+
+### Atualização opcional
+
+Use `bb atualizar 1.5.4` para obter os índices corrigidos. Projetos em 1.5.3 preservam o mesmo comportamento
+de Flash, Tsuru, verificação por arquitetura e avanço pós-merge; não precisam de atualização para executar esses recursos.
+
+## [1.5.3] - 2026-10-07
+
+### O que muda
+
+Mesclar PR recebe `PROJETO_OWNER`, `PROJETO_PLANEJAMENTO` e `PROJETO_EXECUCAO` das variáveis públicas do
+repositório, como o botão Criar branches já recebia. Isso corrige a falha pós-merge que interrompia a criação
+da próxima branch e o avanço automático até a integração. Aprovação, checks do SHA exato e publicação conservam
+os mesmos portões; a correção não mescla nem publica um PR sem aprovação.
+
+### O que o projeto precisa fazer
+
+Nada.
+
+### Atualização opcional
+
+Use `bb atualizar 1.5.3` para regenerar o workflow oficial. Em um épico já afetado, o PR pode ter sido mesclado
+mesmo que o run tenha falhado; confira seu estado antes de repetir ações. Criar branches, primeiro simulação,
+é a recuperação canônica da próxima branch após o merge. Esta atualização não reexecuta merges anteriores.
+
+## [1.5.2] - 2026-10-07
+
+### O que muda
+
+A candidata de deploy passa `--platform` ao Trivy para cada serviço e plataforma de `deploy.plataformas`, tanto
+na varredura de vulnerabilidades quanto no SBOM CycloneDX. Isso permite gerar o SBOM ARM64 num runner AMD64 e
+impede que a segunda arquitetura escape da varredura. Falha do scanner ou da leitura da configuração interrompe
+a etapa. Cada serviço publica `sbom-<servico>.linux-<arquitetura>.json`; `sbom-<servico>.json` continua disponível
+e representa a primeira plataforma configurada. Candidata, atestação e promoção conservam o digest do índice,
+sem reconstruir a imagem nem substituir a referência por um digest filho.
+
+### O que o projeto precisa fazer
+
+Nada.
+
+### Atualização opcional
+
+Use `bb atualizar 1.5.2` para obter a correção oficial e regenerar os arquivos. Candidatas cujo SBOM falhou
+precisam de uma nova execução com a camada atualizada; esta correção não publica a candidata por conta própria.
+
+## [1.5.1] - 2026-10-07
+
+### O que muda
+
+`bb revisao aprovar` usa a API paginada de arquivos, que atende atualizações do framework com mais de 300 arquivos.
+Renomes conferem o caminho antigo e o novo. Lista incompleta ou patch de aceite ausente interrompem o registro.
+As decisões de revisão e o modo continuam vindo da branch de destino; nenhum portão foi dispensado.
+
+### O que o projeto precisa fazer
+
+Nada.
+
+### Atualização opcional
+
+Use `bb atualizar 1.5.1` para obter a correção oficial e regenerar os arquivos.
+
+## [1.5.0] - 2026-10-06
+
+### O que muda
+
+- `bb alvos` descobre os contratos de destinos e formatos instalados e distingue implementados de reservados.
+- `deploy.artefato` é opcional, com `imagem` como padrão. O gerador compõe também a camada do formato e recusa
+  destinos incompletos ou combinações incompatíveis antes de escrever arquivos.
+- **Actions conforme o alvo:** staging, produção e rollback recebem só os nomes de variáveis e segredos do
+  contrato escolhido. O formato seleciona os scripts da construção e da candidata. `deploy.runner` e
+  `deploy.preparar_rede` permitem configurar acesso a rede privada; simulações não preparam rede nem autenticam.
+- **Tsuru existente:** adaptador para API v1.32.0, uma aplicação com um serviço OCI por digest e
+  `TSURU_MIGRACAO=job` por padrão. O job manual por ambiente confere importação, imagem e uma execução nova
+  de migração antes da publicação. `inicializacao` admite SQLite em volume persistente: a pré-checagem registra
+  `migration=pending`, e o inicializador da imagem migra antes de abrir a porta. Saúde/readiness consulta o banco
+  e os testes posteriores comprovam a entrega. Uma réplica permanente pode ter sobreposição transitória no
+  rollout do mesmo volume, exigindo transações e compatibilidade do esquema. Rollback reimporta o digest
+  estável sem desfazer migrações. Veja o [runbook](docs/deploy-tsuru.md).
+- **Modo Flash:** `projeto.modo` é opcional (`padrao` por omissão), escolhido em `bb init --modo flash` ou depois
+  por ADR e `bb gerar`. Testes continuam escritos antes do código; `bb testes` executa os afetados por
+  dependências após concluir as alterações, ou tudo para estrutura, primeira entrega, major/minor e produção.
+  Sem seletor da stack ou base confiável, roda tudo. Candidata exige a execução verde de `bb-ci.yml` no SHA
+  exato; produção fica vinculada ao SHA dos testes completos e conserva aprovação humana.
+- **Release em repositório privado:** a conferência de ancestralidade usa as referências já obtidas pelo
+  checkout completo, sem novo `git fetch` após a retirada das credenciais.
+- `aws` e `paas` eram reservas sem implementação e agora sua seleção é recusada explicitamente.
+  `personalizado`, `pacote` e `estatico` também continuam reservados; não há entrega universal anunciada.
+
+### O que o projeto precisa fazer
+
+Nada.
+
+### Adoção opcional e compatibilidade
+
+Projetos `vps-docker` e compilados conservam o comportamento, com modo padrão e runner público por omissão.
+Use `bb atualizar 1.5.0` para obter o pacote verificado e regenerar a camada gerada; não edite `.bigbang/` nem
+workflows gerados no projeto.
+
+Para adotar Flash, registre a decisão em ADR, escolha `projeto.modo = "flash"` e rode `bb gerar`.
+Configure um seletor de dependências testado em `comandos.testes_alterados`; sem ele, a suíte continua completa.
+Para adotar Tsuru, prepare apps/credenciais distintos por ambiente e, no modo padrão, os jobs manuais.
+Para SQLite, prepare volume, backup, inicializador e readiness conforme o runbook, antes de alterar o alvo por
+PR e ADR. A plataforma Node.js do servidor é uma preparação separada; esta versão promove imagens OCI por
+digest, sem upload de fontes. Um script de rede pertence ao projeto e precisa de aprovação/revisão antes de publicação.
+
+Projetos que selecionaram uma reserva sem adaptador funcional devem consultar `bb alvos` e escolher uma
+integração implementada, ou aguardar sua implementação. Os testes do framework não substituem a homologação
+real: o consumidor registra URL, SHA, digest, eventos/execução de migração e saúde.
+
+
 ## [1.4.0] - 2026-10-05
 
 ### O que muda
