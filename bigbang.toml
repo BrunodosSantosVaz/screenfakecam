@@ -3,66 +3,71 @@
 # O gerador valida o esquema e recusa chaves desconhecidas. Depois de mudar, rode `bb gerar`.
 
 [bigbang]
-versao = "3.0.0"                        # versão do framework instalada (igual a .bigbang/VERSION)
-origem = "BrunodosSantosVaz/big-bang"  # de onde vêm as atualizações
+version = "3.0.0"                        # versão do framework instalada (igual a .bigbang/VERSION)
+origin = "BrunodosSantosVaz/big-bang"  # de onde vêm as atualizações
 
-[projeto]
-modo = "flash"
-nome = "ScreenFakeCam"
+[project]
+mode = "flash"
+name = "ScreenFakeCam"
 slug = "screenfakecam"
-dono = "BrunodosSantosVaz"             # login do GitHub do dono
-repositorio = "BrunodosSantosVaz/screenfakecam"
-visibilidade = "publico"               # privado | publico
-licenca = "GPL-3.0"                           # obrigatório se publico (identificador SPDX, ex.: "MIT")
+owner = "BrunodosSantosVaz"             # login do GitHub do dono
+repository = "BrunodosSantosVaz/screenfakecam"
+visibility = "public"               # privado | publico
+license = "GPL-3.0"                           # obrigatório se publico (identificador SPDX, ex.: "MIT")
 
-[entrega]
-perfil = "compilado"                   # deploy | compilado
-alvo = ""                              # deploy: vps-docker | aws | paas ; compilado: ""
-caminhos_artefato = ["app/src/main/", "app/build.gradle.kts", "app/gradle.lockfile", "app/proguard-rules.pro", "build.gradle.kts",
+[delivery]
+profile = "compiled"                   # deploy | compilado
+target = ""                              # deploy: vps-docker | aws | paas ; compilado: ""
+artifact_paths = ["app/src/main/", "app/build.gradle.kts", "app/gradle.lockfile", "app/proguard-rules.pro", "build.gradle.kts",
                      "settings.gradle.kts", "gradle.properties", "gradle/", "gradlew", "version.properties",
                      "packaging/"]
-arquivo_versao = "version.properties"   # único arquivo com a versão do artefato (version=X.Y.Z)
-ecossistemas = ["gradle"]              # pacotes da stack para o Dependabot
+version_file = "version.properties"   # único arquivo com a versão do artefato (version=X.Y.Z)
+ecosystems = ["gradle"]              # pacotes da stack para o Dependabot
 
-[compilado]                            # só no perfil compilado
+[compiled]                            # só no perfil compilado
 # Cada build_<sistema> deixa exatamente um arquivo em $BB_SAIDA (lê BB_VERSAO, BB_RC, BB_SISTEMA). ADR-0009.
-sistemas = ["android"]
+systems = ["android"]
 build_android = "bash packaging/android/build.sh"
 
-[comandos]                             # Gradle Wrapper; o Android SDK vem do ambiente (runner ou Android Studio)
-instalar = "./gradlew --quiet help"
+[commands]                             # Gradle Wrapper; o Android SDK vem do ambiente (runner ou Android Studio)
+install = "./gradlew --quiet help"
 lint = "./gradlew lint ktlintCheck"
-tipos = "./gradlew compileDebugKotlin compileDebugUnitTestKotlin"
-testes = "./gradlew testDebugUnitTest"
-testes_aceite = "./gradlew testDebugUnitTest --tests 'aceite.*'"
-arquitetura = "./gradlew testDebugUnitTest --tests 'arquitetura.*'"
-cobertura = "./gradlew koverVerifyDebug"
+types = "./gradlew compileDebugKotlin compileDebugUnitTestKotlin"
+test = "./gradlew testDebugUnitTest"
+acceptance_test = "./gradlew testDebugUnitTest --tests 'aceite.*'"
+architecture = "./gradlew testDebugUnitTest --tests 'arquitetura.*'"
+coverage = "./gradlew koverVerifyDebug"
 build = "./gradlew assembleRelease"
 
-[testes]
-cobertura_minima = 80                  # % nas camadas de domínio e aplicação
-marca_pendente = "@Pendente"           # anotação JUnit do projeto: falha esperada estrita (passou = reprova)
-padrao_teste = "fun `"                 # testes de aceite: nome entre crases com o ID da RN (fun `RN-0001 …`)
+[tests]
+min_coverage = 80                  # % nas camadas de domínio e aplicação
+pending_marker = "@Pendente"           # anotação JUnit do projeto: falha esperada estrita (passou = reprova)
+test_pattern = "fun `"                 # testes de aceite: nome entre crases com o ID da RN (fun `RN-0001 …`)
 
-[seguranca]
-nivel_asvs = "L1"                      # L1 | L2 (L2 obrigatório com dado pessoal ou dinheiro)
-banco_no_navegador = false             # true só com ADR (SEG-IA-01)
-zonas_sensiveis = ["app/src/main/AndroidManifest.xml", "app/proguard-rules.pro", "packaging/**"]
+[security]
+asvs_level = "L1"                      # L1 | L2 (L2 obrigatório com dado pessoal ou dinheiro)
+browser_database = false             # true só com ADR (SEG-IA-01)
+sensitive_paths = ["app/src/main/AndroidManifest.xml", "app/proguard-rules.pro", "packaging/**"]
 # Sempre sensíveis, além da lista: .github/**, tests/aceite/** (exceto no PR de teste do épico, cuja revisão
 # segue as labels testes-revisao-*), STACK.md, DESIGN.md, PRODUTO.md, bigbang.toml, flags.toml e os arquivos
 # de dependência da stack.
 
-[paineis]                              # preenchido em F4
+[board]                              # preenchido em F4
+model = "three-boards"                 # single depois da migração do quadro
+labels = "legacy"                      # v3 depois da migração das labels
 owner = "BrunodosSantosVaz"
-planejamento = 22
-execucao = 23
+planning = 22
+execution = 23
 bugs = 24
 
-[ias]
-nomes = ["claude-1", "claude-2", "codex-1"]
-tarefas_por_ia = 3
-trava_expira_horas = 24
-espera_confirmacao_segundos = 10
+[agents]
+names = ["claude-1", "claude-2", "codex-1"]
+tasks_per_agent = 3
+lease_hours = 24
+confirm_seconds = 10
 
 [flags]
-validade_maxima_dias = 30
+max_age_days = 30
+
+[workflow]
+model = "epic-branch"
