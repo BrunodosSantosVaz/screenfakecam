@@ -4,9 +4,9 @@
   "visibilidade": "publico",
   "wiki": {
     "base": "40e73a1624e6fd1c9f95330c5f82bb6f29dbb69a",
-    "commit": "c787edfaaec57644f737b2dc34ae98d07371c0ab",
+    "commit": "3d3fab91d48313cd0b3651dcaa242d523fc707d9",
     "branch": "master",
-    "proposta": "bigbang/proposta-259-antigravity-1-v3-update"
+    "proposta": "bigbang/proposta-259-antigravity-1-config"
   },
   "paginas": {
     "CHANGELOG.md": "Changelog",
